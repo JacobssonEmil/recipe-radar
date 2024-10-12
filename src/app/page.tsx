@@ -15,7 +15,7 @@ export default function Home() {
       <div className="flex flex-col items-center justify-center p-4 h-screen">
         <h1 className="text-3xl font-semibold">Test Title For Project</h1>
 
-        <p className="max-w-[400px]">
+        <p className="max-w-[400px] text-muted-foreground">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In aliquet
           purus quis nibh vehicula vehicula.
         </p>
