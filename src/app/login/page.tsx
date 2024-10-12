@@ -1,3 +1,5 @@
+"use client"; // This marks the component as a client-side component
+
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
@@ -10,7 +12,7 @@ export default function Login() {
       {/* Header Section */}
       <header className="text-center">
         <h1 className="text-3xl font-semibold">Welcome back to Recipe Radar</h1>
-        <p className="text-muted-foreground mt-2 text-md">
+        <p className="text-muted-foreground mt-4 text-md">
           Enter your email and password to continue.
         </p>
       </header>
@@ -26,7 +28,7 @@ export default function Login() {
             id="email"
             type="email"
             placeholder="Enter your email address"
-            className="w-full mt-2"
+            className="w-full mt-1.5"
           />
         </div>
 
@@ -39,7 +41,7 @@ export default function Login() {
             id="password"
             type="password"
             placeholder="Enter your password"
-            className="w-full mt-2"
+            className="w-full mt-1.5"
           />
         </div>
 
@@ -47,18 +49,19 @@ export default function Login() {
         <div className="flex items-center justify-between w-full mt-1">
           <div className="flex items-center">
             <Checkbox className="mr-2" id="remember" />
-            <label className="text-sm text-muted-foreground" htmlFor="remember">
+            <label className="text-md text-muted-foreground" htmlFor="remember">
               Remember me
             </label>
           </div>
-          {/* Forgot password aligned right */}
-          <Button variant="link" className="text-sm ml-auto text-end">
+          <Button variant="link" className="text-md ml-auto text-end p-0">
             Forgot password
           </Button>
         </div>
 
         {/* Sign In Button */}
-        <Button className="w-full mt-4">Sign in</Button>
+        <Link href="/" className="w-full mt-4">
+          <Button className="w-full">Sign in</Button>
+        </Link>
 
         {/* Divider */}
         <p className="text-muted-foreground text-sm text-center w-full mt-4">
@@ -87,10 +90,14 @@ export default function Login() {
             Facebook
           </Button>
         </div>
-        <p className="mt-8">
+
+        {/* Register Link */}
+        <p className="mt-8 text-md">
           <span className="text-muted-foreground">Don't have an account? </span>
-          <Link href={"/register"} className="font-semibold">
-            Register
+          <Link href={"/register"} className="">
+            <Button variant={"link"} className="p-0 text-md">
+              Register
+            </Button>
           </Link>
         </p>
       </div>
