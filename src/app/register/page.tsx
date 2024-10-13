@@ -6,7 +6,11 @@ import Link from "next/link";
 
 export default function Register() {
   return (
-    <div className="flex flex-col justify-center min-h-screen p-4">
+    //Screen height minus navbar height
+    <div
+      className="flex flex-col justify-center"
+      style={{ minHeight: "calc(100vh - 64px)" }}
+    >
       {/* Wrapper with border */}
       <div className="border-0 md:border md:rounded-lg p-6 max-w-md w-full mx-auto">
         {/* Header Section */}

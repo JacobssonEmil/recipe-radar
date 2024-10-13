@@ -9,9 +9,14 @@ import { FaSearch } from "react-icons/fa";
 
 export default function Login() {
   return (
-    <div className="flex flex-col justify-center min-h-screen p-4">
+    //Screen height minus navbar height
+    <div
+      className="flex flex-col justify-center"
+      style={{ minHeight: "calc(100vh - 64px)" }}
+    >
       {/* Wrapper with border */}
-      <div className="border-0 md:border md:rounded-lg p-6 max-w-md w-full mx-auto">
+      {/** S */}
+      <div className="border-0 md:border md:rounded-lg p-6 md:p-6 max-w-md w-full mx-auto">
         {/* Header Section */}
         <div className="max-w-sm w-full text-left mx-auto">
           <h1 className="text-3xl font-semibold">Login</h1>

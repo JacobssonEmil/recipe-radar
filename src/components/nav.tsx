@@ -8,12 +8,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { FaRegUser, FaChevronDown } from "react-icons/fa"; // Import the chevron icon
+import { FaRegUser } from "react-icons/fa";
+import { GoChevronDown } from "react-icons/go";
 import { ModeToggle } from "./ui/toggle-mode";
 import Link from "next/link";
 import { Squash as Hamburger } from "hamburger-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import Image from "next/image";
+import { UtensilsCrossed } from "lucide-react";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,14 +39,13 @@ export default function Nav() {
   ];
 
   return (
-    <nav className="absolute top-0 left-0 w-full z-50">
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="w-full">
+      <div className="relative max-w-[2560px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <div className="flex-shrink-0 flex items-center">
-            <Link href="/">Recipe Radar</Link>
-          </div>
-
+          <Link href="/" className="flex items-center space-x-2">
+            <UtensilsCrossed className="h-6 w-6 " />
+            <span className="text-xl font-bold">RecipeRadar</span>
+          </Link>
           {/* Large Screen */}
           <div className="hidden sm:flex items-center gap-6 absolute left-1/2 transform -translate-x-1/2">
             <Link href="/">
@@ -60,8 +62,7 @@ export default function Nav() {
               <DropdownMenuTrigger>
                 <p className="relative flex items-center space-x-1 cursor-pointer before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full">
                   Categories
-                  <FaChevronDown className="ml-1" />{" "}
-                  {/* Add the chevron here */}
+                  <GoChevronDown className="ml-1 " />{" "}
                 </p>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-primary-foreground">
@@ -109,7 +110,7 @@ export default function Nav() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="sm:hidden px-4 bg-background border-b-4 pb-4">
+        <div className="sm:hidden px-4 bg-background border-b-4 ">
           <div className="flex flex-col space-y-4">
             <Link href="/">
               <p className="relative flex items-center cursor-pointer">Home</p>
@@ -122,7 +123,7 @@ export default function Nav() {
             <DropdownMenu>
               <DropdownMenuTrigger>
                 <p className="relative flex items-center cursor-pointer">
-                  Categories <FaChevronDown className="ml-1" />
+                  Categories <GoChevronDown className="ml-1" />
                 </p>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="border">
