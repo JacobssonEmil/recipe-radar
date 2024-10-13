@@ -9,105 +9,143 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { FaRegUser } from "react-icons/fa";
 import { ModeToggle } from "./ui/toggle-mode";
 import Link from "next/link";
-import { FaChevronDown, FaSearch } from "react-icons/fa";
 import { Button } from "./ui/button";
-import Image from "next/image";
+import { Squash as Hamburger } from "hamburger-react";
 
 export default function Nav() {
-  const [searchQuery, setSearchQuery] = useState("");
-
-  function handleSearch() {
-    if (searchQuery.trim()) {
-      alert(`You searched for: ${searchQuery}`);
-    }
-  }
-
-  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
-    if (event.key === "Enter") {
-      handleSearch();
-    }
-  }
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="absolute top-0 left-0 w-full py-4 shadow-md dark:shadow-none dark:border-bottom dark:border z-50">
-      <div className="container mx-auto flex items-center justify-between px-4">
-        <div>
-          <Link href="/">
-            {/**<Image
-          src="/logo1.png"
-          alt="Google logo"
-          width={150}
-          height={150}
-        /> */}
-            <h1 className="text-xl">Recipe Radar</h1>
-          </Link>
-        </div>
-
-        <div className="flex items-center space-x-6">
-          <div className="hidden sm:block relative">
-            <FaSearch
-              onClick={handleSearch}
-              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground cursor-pointer"
-            />
-            <Input
-              type="text"
-              placeholder="Search recipes..."
-              className="w-56"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              onKeyDown={handleKeyDown}
-            />
+    <nav className="absolute top-0 left-0 w-full z-50">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <div className="flex-shrink-0 flex items-center">
+            <Link href="/">Recipe Radar</Link>
           </div>
-          <p className="cursor-pointer relative inline-block before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full">
-            Home
-          </p>
-          <DropdownMenu>
-            <DropdownMenuTrigger>
-              <p className="relative inline-block flex items-center space-x-1 cursor-pointer before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full">
-                Categories{" "}
-                <span className="ml-1 text-muted-foreground">
-                  <FaChevronDown size={12} />
-                </span>
+
+          {/* Large Screen */}
+          <div className="hidden sm:flex items-center gap-6 absolute left-1/2 transform -translate-x-1/2">
+            <Link href="/">
+              <p className="cursor-pointer relative inline-block before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full">
+                Home
               </p>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56">
-              <DropdownMenuLabel>Browse Categories</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem className="cursor-pointer">
-                Popular Recipes
-              </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer">
-                Quick & Easy Dinner
-              </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer">
-                Family favorites
-              </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer">
-                Low-Calorie Meals
-              </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer">
-                Vegetarian
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <p className="cursor-pointer relative inline-block before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full">
-            My Recipes
-          </p>
+            </Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <p className="relative flex items-center space-x-1 cursor-pointer before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full">
+                  Categories{" "}
+                </p>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56">
+                <DropdownMenuLabel>Browse Categories</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem className="cursor-pointer">
+                  Popular Recipes
+                </DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer">
+                  Quick & Easy Dinner
+                </DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer">
+                  Family favorites
+                </DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer">
+                  Low-Calorie Meals
+                </DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer">
+                  Vegetarian
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
 
-          <ModeToggle />
+            <Link href="/">
+              <p className="cursor-pointer relative inline-block before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full">
+                My Recipes
+              </p>
+            </Link>
+          </div>
 
-          <Link
-            href={"/login"}
-            className="cursor-pointer relative inline-block before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full"
-          >
-            Sign In
-          </Link>
+          {/* Sign in and Toggle */}
+          <div className="hidden sm:flex items-center gap-4">
+            <Link
+              href={"/login"}
+              className="flex cursor-pointer relative before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full"
+            >
+              <FaRegUser className="mt-1 mr-1" />
+              Sign In
+            </Link>
+
+            <ModeToggle />
+          </div>
+
+          {/* Hamburger Icon */}
+          <div className="-mr-2 flex sm:hidden items-center">
+            <Hamburger toggled={isOpen} toggle={setIsOpen} size={24} />
+          </div>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="sm:hidden px-4 py-4 bg-background border-b-4">
+          {" "}
+          <div className="flex flex-col space-y-4">
+            {" "}
+            <Link href="/">
+              <p className="relative flex items-center cursor-pointer"> Home</p>
+            </Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <p className="relative flex items-centercursor-pointer">
+                  {" "}
+                  Categories{" "}
+                </p>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-full py-2">
+                {" "}
+                <DropdownMenuLabel>Browse Categories</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem className="cursor-pointer py-1">
+                  {" "}
+                  Popular Recipes
+                </DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer py-1">
+                  Quick & Easy Dinner
+                </DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer py-1">
+                  Family favorites
+                </DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer py-1">
+                  Low-Calorie Meals
+                </DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer py-1">
+                  Vegetarian
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <Link href="/">
+              <p className="relative flex items-center space-x-2 cursor-pointer ">
+                {" "}
+                My Recipes
+              </p>
+            </Link>
+            {/* Sign In and Mode Toggle*/}
+            <Link
+              href="/login"
+              className="relative flex items-center space-x-2 cursor-pointer "
+            >
+              <FaRegUser className="mr-2" />
+              Sign In
+            </Link>
+            <div className="ml-[-12px]">
+              <ModeToggle />
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
