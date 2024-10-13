@@ -1,6 +1,5 @@
 "use client";
-
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,25 +8,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { FaRegUser } from "react-icons/fa";
+import { FaRegUser, FaChevronDown } from "react-icons/fa"; // Import the chevron icon
 import { ModeToggle } from "./ui/toggle-mode";
 import Link from "next/link";
 import { Squash as Hamburger } from "hamburger-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
-  const catMenu = useRef(null);
   const categories = [
     "Popular Recipes",
     "Quick & Easy Dinner",
@@ -47,7 +36,7 @@ export default function Nav() {
   ];
 
   return (
-    <nav ref={catMenu} className="absolute top-0 left-0 w-full z-50">
+    <nav className="absolute top-0 left-0 w-full z-50">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -62,10 +51,17 @@ export default function Nav() {
                 Home
               </p>
             </Link>
+            <Link href="/">
+              <p className="cursor-pointer relative inline-block before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full">
+                My Recipes
+              </p>
+            </Link>
             <DropdownMenu>
               <DropdownMenuTrigger>
                 <p className="relative flex items-center space-x-1 cursor-pointer before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full">
-                  Categories{" "}
+                  Categories
+                  <FaChevronDown className="ml-1" />{" "}
+                  {/* Add the chevron here */}
                 </p>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-primary-foreground">
@@ -89,12 +85,6 @@ export default function Nav() {
                 </ScrollArea>
               </DropdownMenuContent>
             </DropdownMenu>
-
-            <Link href="/">
-              <p className="cursor-pointer relative inline-block before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full">
-                My Recipes
-              </p>
-            </Link>
           </div>
 
           {/* Sign in and Toggle */}
@@ -124,10 +114,15 @@ export default function Nav() {
             <Link href="/">
               <p className="relative flex items-center cursor-pointer">Home</p>
             </Link>
+            <Link href="/">
+              <p className="relative flex items-center space-x-2 cursor-pointer">
+                My Recipes
+              </p>
+            </Link>
             <DropdownMenu>
               <DropdownMenuTrigger>
                 <p className="relative flex items-center cursor-pointer">
-                  Categories{" "}
+                  Categories <FaChevronDown className="ml-1" />
                 </p>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="border">
@@ -138,8 +133,7 @@ export default function Nav() {
                       <div key={index}>
                         <div
                           className="text-sm cursor-pointer relative inline-block before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full"
-                          onClick={(e) => {
-                            e.stopPropagation(); // Prevent the outside click handler
+                          onClick={() => {
                             alert(`Clicked on ${category}`);
                           }}
                         >
@@ -155,11 +149,7 @@ export default function Nav() {
                 </ScrollArea>
               </DropdownMenuContent>
             </DropdownMenu>
-            <Link href="/">
-              <p className="relative flex items-center space-x-2 cursor-pointer">
-                My Recipes
-              </p>
-            </Link>
+
             {/* Sign In and Mode Toggle*/}
             <Link
               href="/login"
