@@ -13,20 +13,42 @@ import { FaRegUser } from "react-icons/fa";
 import { ModeToggle } from "./ui/toggle-mode";
 import Link from "next/link";
 import { Squash as Hamburger } from "hamburger-react";
-
-const tags = Array.from({ length: 50 }).map(
-  (_, i, a) => `v1.2.0-beta.${a.length - i}`
-);
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const catMenu = useRef(null);
+  const categories = [
+    "Popular Recipes",
+    "Quick & Easy Dinner",
+    "Family Favorites",
+    "Low-Calorie Meals",
+    "Vegetarian",
+    "Vegan Delights",
+    "Gluten-Free Options",
+    "One-Pot Meals",
+    "Breakfast Favorites",
+    "Comfort Food Classics",
+    "Healthy Snacks",
+    "Desserts & Sweets",
+    "Grilled Specialties",
+    "International Cuisine",
+    "Holiday Recipes",
+  ];
+
   const closeOpenMenus = (e: { target: any }) => {
     if (isOpen && !catMenu.current?.contains(e.target)) {
       setIsOpen(false);
     }
   };
-  document.addEventListener("mousedown", closeOpenMenus);
+
+  useEffect(() => {
+    document.addEventListener("mousedown", closeOpenMenus);
+    return () => {
+      document.removeEventListener("mousedown", closeOpenMenus);
+    };
+  }, [isOpen]);
 
   return (
     <nav ref={catMenu} className="absolute top-0 left-0 w-full z-50">
@@ -50,24 +72,24 @@ export default function Nav() {
                   Categories{" "}
                 </p>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56">
-                <DropdownMenuLabel>Browse Categories</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem className="cursor-pointer">
-                  Popular Recipes
-                </DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer">
-                  Quick & Easy Dinner
-                </DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer">
-                  Family favorites
-                </DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer">
-                  Low-Calorie Meals
-                </DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer">
-                  Vegetarian
-                </DropdownMenuItem>
+              <DropdownMenuContent className="border">
+                <ScrollArea className="h-80 w-80">
+                  <div className="p-4">
+                    {categories.map((category, index) => (
+                      <div key={index}>
+                        <div
+                          className="text-sm cursor-pointer relative inline-block before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full"
+                          onClick={() => alert(`Clicked on ${category}`)}
+                        >
+                          {category}
+                        </div>
+                        {index < categories.length - 1 && (
+                          <Separator className="my-2" />
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </ScrollArea>
               </DropdownMenuContent>
             </DropdownMenu>
 
@@ -114,21 +136,15 @@ export default function Nav() {
               <DropdownMenuContent className="w-full py-2">
                 <DropdownMenuLabel>Browse Categories</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className="cursor-pointer py-1">
-                  Popular Recipes
-                </DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer py-1">
-                  Quick & Easy Dinner
-                </DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer py-1">
-                  Family favorites
-                </DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer py-1">
-                  Low-Calorie Meals
-                </DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer py-1">
-                  Vegetarian
-                </DropdownMenuItem>
+                {categories.map((category, index) => (
+                  <DropdownMenuItem
+                    key={index}
+                    className="cursor-pointer py-1"
+                    onClick={() => alert(`Clicked on ${category}`)}
+                  >
+                    {category}
+                  </DropdownMenuItem>
+                ))}
               </DropdownMenuContent>
             </DropdownMenu>
             <Link href="/">
