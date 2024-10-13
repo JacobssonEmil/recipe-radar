@@ -64,7 +64,6 @@ export default function Nav() {
                   <p className="cursor-pointer relative inline-block before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full">
                     Categories
                   </p>{" "}
-                  <ChevronDown className="ml-1 h-4 w-4 mt-1" />
                 </div>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-primary-foreground">
