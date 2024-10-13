@@ -15,6 +15,15 @@ import Link from "next/link";
 import { Squash as Hamburger } from "hamburger-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,19 +45,6 @@ export default function Nav() {
     "International Cuisine",
     "Holiday Recipes",
   ];
-
-  const closeOpenMenus = (e: { target: any }) => {
-    if (isOpen && !catMenu.current?.contains(e.target)) {
-      setIsOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", closeOpenMenus);
-    return () => {
-      document.removeEventListener("mousedown", closeOpenMenus);
-    };
-  }, [isOpen]);
 
   return (
     <nav ref={catMenu} className="absolute top-0 left-0 w-full z-50">
@@ -72,7 +68,8 @@ export default function Nav() {
                   Categories{" "}
                 </p>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="border">
+              <DropdownMenuContent className="bg-primary-foreground">
+                <DropdownMenuLabel>Select a categories</DropdownMenuLabel>
                 <ScrollArea className="h-80 w-80">
                   <div className="p-4">
                     {categories.map((category, index) => (
@@ -130,21 +127,31 @@ export default function Nav() {
             <DropdownMenu>
               <DropdownMenuTrigger>
                 <p className="relative flex items-center cursor-pointer">
-                  Categories
+                  Categories{" "}
                 </p>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-full py-2">
-                <DropdownMenuLabel>Browse Categories</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                {categories.map((category, index) => (
-                  <DropdownMenuItem
-                    key={index}
-                    className="cursor-pointer py-1"
-                    onClick={() => alert(`Clicked on ${category}`)}
-                  >
-                    {category}
-                  </DropdownMenuItem>
-                ))}
+              <DropdownMenuContent className="border">
+                <ScrollArea className="h-80 w-80">
+                  <div className="p-4">
+                    {categories.map((category, index) => (
+                      <div key={index}>
+                        <div
+                          className="text-sm cursor-pointer relative inline-block before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full"
+                          onClick={(e) => {
+                            e.stopPropagation(); // Prevent the outside click handler
+                            alert(`Clicked on ${category}`);
+                          }}
+                        >
+                          {category}
+                        </div>
+
+                        {index < categories.length - 1 && (
+                          <Separator className="my-2" />
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </ScrollArea>
               </DropdownMenuContent>
             </DropdownMenu>
             <Link href="/">
