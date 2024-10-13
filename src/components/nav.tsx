@@ -131,6 +131,7 @@ export default function Nav() {
                 </p>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="border">
+                <DropdownMenuLabel>Select a category</DropdownMenuLabel>
                 <ScrollArea className="h-80 w-80">
                   <div className="p-4">
                     {categories.map((category, index) => (
