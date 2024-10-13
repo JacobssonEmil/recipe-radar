@@ -41,7 +41,7 @@ export default function Nav() {
   return (
     <nav className="w-full">
       <div className="relative max-w-[1400px] mx-auto">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-16 mx-auto px-4 sm:px-6 lg:px-8">
           <Link href="/" className="flex items-center space-x-2">
             <UtensilsCrossed className="h-6 w-6 " />
             <span className="text-xl font-bold">RecipeRadar</span>
@@ -110,7 +110,7 @@ export default function Nav() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="sm:hidden px-4 bg-background border-b-4 ">
+        <div className="sm:hidden px-4 bg-background border-b-4 pb-4">
           <div className="flex flex-col space-y-4">
             <Link href="/">
               <p className="relative flex items-center cursor-pointer">Home</p>

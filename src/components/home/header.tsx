@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 
 export default function Header() {
   return (
-    <header className="w-full mt-24">
+    <header className="w-full mt-12 md:mt-24">
       <div className="container mx-auto px-4 text-center">
         <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
           Discover, Save, and Share{" "}
