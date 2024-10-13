@@ -16,7 +16,7 @@ import { Squash as Hamburger } from "hamburger-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
-import { UtensilsCrossed } from "lucide-react";
+import { ChevronDown, UtensilsCrossed } from "lucide-react";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -60,10 +60,12 @@ export default function Nav() {
             </Link>
             <DropdownMenu>
               <DropdownMenuTrigger>
-                <p className="relative flex items-center space-x-1 cursor-pointer before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full">
-                  Categories
-                  <GoChevronDown className="ml-1 " />{" "}
-                </p>
+                <div className="flex flex-row ">
+                  <p className="cursor-pointer relative inline-block before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full">
+                    Categories
+                  </p>{" "}
+                  <ChevronDown className="ml-1 h-4 w-4 mt-1" />
+                </div>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-primary-foreground">
                 <DropdownMenuLabel>Select a category</DropdownMenuLabel>
@@ -90,12 +92,11 @@ export default function Nav() {
 
           {/* Sign in and Toggle */}
           <div className="hidden sm:flex items-center gap-4">
-            <Link
-              href={"/login"}
-              className="flex cursor-pointer relative before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full"
-            >
+            <Link href="/login" className="flex flex-row ">
               <FaRegUser className="mt-1 mr-1" />
-              Sign In
+              <p className="cursor-pointer relative inline-block before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full">
+                Sign In
+              </p>{" "}
             </Link>
 
             <ModeToggle />
