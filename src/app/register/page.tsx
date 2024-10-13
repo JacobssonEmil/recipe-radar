@@ -43,22 +43,12 @@ export default function Register() {
               placeholder="Enter your password"
               className="w-full mt-1.5"
             />
-          </div>
-
-          {/* Remember Me and Forgot Password */}
-          <div className="flex items-center justify-between w-full mt-1">
-            <div className="flex items-center">
-              <Checkbox className="mr-2" id="remember" />
-              <label
-                className="text-sm text-muted-foreground"
-                htmlFor="remember"
-              >
-                Remember me
-              </label>
-            </div>
-            <Button variant="link" className="text-sm ml-auto text-end p-0">
-              Forgot password
-            </Button>
+            <Input
+              id="confirm-password"
+              type="password"
+              placeholder="Confirm password"
+              className="w-full mt-1.5 mt-4"
+            />
           </div>
 
           {/* Sign In Button */}
