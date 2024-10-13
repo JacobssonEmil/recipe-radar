@@ -15,6 +15,7 @@ import { ModeToggle } from "./ui/toggle-mode";
 import Link from "next/link";
 import { FaChevronDown, FaSearch } from "react-icons/fa";
 import { Button } from "./ui/button";
+import Image from "next/image";
 
 export default function Nav() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -32,10 +33,18 @@ export default function Nav() {
   }
 
   return (
-    <nav className="py-4 shadow-md dark:shadow-none dark:border-bottom dark:border">
+    <nav className="absolute top-0 left-0 w-full py-4 shadow-md dark:shadow-none dark:border-bottom dark:border z-50">
       <div className="container mx-auto flex items-center justify-between px-4">
         <div>
-          <Link href="/">RecipeRadar</Link>
+          <Link href="/">
+            {/**<Image
+          src="/logo1.png"
+          alt="Google logo"
+          width={150}
+          height={150}
+        /> */}
+            <h1 className="text-xl">Recipe Radar</h1>
+          </Link>
         </div>
 
         <div className="flex items-center space-x-6">
@@ -61,7 +70,7 @@ export default function Nav() {
               <p className="relative inline-block flex items-center space-x-1 cursor-pointer before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full">
                 Categories{" "}
                 <span className="ml-1 text-muted-foreground">
-                  <FaChevronDown />
+                  <FaChevronDown size={12} />
                 </span>
               </p>
             </DropdownMenuTrigger>
