@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,14 +12,24 @@ import {
 import { FaRegUser } from "react-icons/fa";
 import { ModeToggle } from "./ui/toggle-mode";
 import Link from "next/link";
-import { Button } from "./ui/button";
 import { Squash as Hamburger } from "hamburger-react";
+
+const tags = Array.from({ length: 50 }).map(
+  (_, i, a) => `v1.2.0-beta.${a.length - i}`
+);
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
+  const catMenu = useRef(null);
+  const closeOpenMenus = (e: { target: any }) => {
+    if (isOpen && !catMenu.current?.contains(e.target)) {
+      setIsOpen(false);
+    }
+  };
+  document.addEventListener("mousedown", closeOpenMenus);
 
   return (
-    <nav className="absolute top-0 left-0 w-full z-50">
+    <nav ref={catMenu} className="absolute top-0 left-0 w-full z-50">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -90,26 +100,21 @@ export default function Nav() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="sm:hidden px-4 py-4 bg-background border-b-4">
-          {" "}
+        <div className="sm:hidden px-4 bg-background border-b-4 pb-4">
           <div className="flex flex-col space-y-4">
-            {" "}
             <Link href="/">
-              <p className="relative flex items-center cursor-pointer"> Home</p>
+              <p className="relative flex items-center cursor-pointer">Home</p>
             </Link>
             <DropdownMenu>
               <DropdownMenuTrigger>
-                <p className="relative flex items-centercursor-pointer">
-                  {" "}
-                  Categories{" "}
+                <p className="relative flex items-center cursor-pointer">
+                  Categories
                 </p>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-full py-2">
-                {" "}
                 <DropdownMenuLabel>Browse Categories</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem className="cursor-pointer py-1">
-                  {" "}
                   Popular Recipes
                 </DropdownMenuItem>
                 <DropdownMenuItem className="cursor-pointer py-1">
@@ -127,22 +132,18 @@ export default function Nav() {
               </DropdownMenuContent>
             </DropdownMenu>
             <Link href="/">
-              <p className="relative flex items-center space-x-2 cursor-pointer ">
-                {" "}
+              <p className="relative flex items-center space-x-2 cursor-pointer">
                 My Recipes
               </p>
             </Link>
             {/* Sign In and Mode Toggle*/}
             <Link
               href="/login"
-              className="relative flex items-center space-x-2 cursor-pointer "
+              className="relative flex items-center space-x-2 cursor-pointer"
             >
               <FaRegUser className="mr-2" />
               Sign In
             </Link>
-            <div className="ml-[-12px]">
-              <ModeToggle />
-            </div>
           </div>
         </div>
       )}
