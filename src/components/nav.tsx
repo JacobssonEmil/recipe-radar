@@ -40,7 +40,7 @@ export default function Nav() {
 
   return (
     <nav className="w-full">
-      <div className="relative max-w-[2560px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-[1400px] mx-auto">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center space-x-2">
             <UtensilsCrossed className="h-6 w-6 " />
