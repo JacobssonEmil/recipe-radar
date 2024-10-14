@@ -128,22 +128,79 @@ export default function Home() {
         <div className="flex flex-col gap-12 mt-12 md:mt-24">
           {/** Popular Recipes */}
           <div>
-            <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row justify-between items-center mb-4">
               <h1 className="text-xl md:text-2xl font-semibold">
                 Popular Recipes
               </h1>
-              <Link href="/" className="flex flex-row">
+              <Link href="/" className="flex flex-row ">
                 <p className="cursor-pointer relative inline-block before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full">
                   View More
                 </p>{" "}
                 <ChevronRight className="ml-1 h-4 w-4 mt-1" />
               </Link>
             </div>
+
+            <swiper-container
+              style={{
+                maxWidth: "100%",
+                margin: "0 auto",
+                display: "flex",
+                justifyContent: "center",
+              }}
+              breakpoints={JSON.stringify({
+                710: {
+                  slidesPerView: 2,
+                  spaceBetween: 20,
+                },
+                1040: {
+                  slidesPerView: 3,
+                  spaceBetween: 40,
+                },
+                1355: {
+                  slidesPerView: 4,
+                  spaceBetween: 50,
+                },
+              })}
+              slides-per-view="1"
+              space-between="20"
+              mousewheel-invert="false"
+              pagination={{
+                clickable: true, // Makes the pagination dots clickable
+                dynamicBullets: true,
+              }}
+              mousewheel="false"
+            >
+              <swiper-slide
+                style={{ display: "flex", justifyContent: "center" }}
+              >
+                <RecipeCard recipe={recipes[0]} />
+              </swiper-slide>
+              <swiper-slide
+                style={{ display: "flex", justifyContent: "center" }}
+              >
+                <RecipeCard recipe={recipes[1]} />
+              </swiper-slide>
+              <swiper-slide
+                style={{ display: "flex", justifyContent: "center" }}
+              >
+                <RecipeCard recipe={recipes[2]} />
+              </swiper-slide>
+              <swiper-slide
+                style={{ display: "flex", justifyContent: "center" }}
+              >
+                <RecipeCard recipe={recipes[3]} />
+              </swiper-slide>
+              <swiper-slide
+                style={{ display: "flex", justifyContent: "center" }}
+              >
+                <RecipeCard recipe={recipes[4]} />
+              </swiper-slide>
+            </swiper-container>
           </div>
 
           {/** Quick & Easy Dinner */}
           <div>
-            <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row justify-between items-center mb-4">
               <h1 className="text-xl md:text-2xl font-semibold">
                 Quick & Easy Dinner
               </h1>
@@ -178,8 +235,11 @@ export default function Home() {
               })}
               slides-per-view="1"
               space-between="20"
-              scrollbar-clickable="true"
-              mousewheel-invert="false"
+              pagination={{
+                clickable: true, // Enables pagination dots
+                dynamicBullets: true,
+              }}
+              mousewheel="false"
             >
               <swiper-slide
                 style={{ display: "flex", justifyContent: "center" }}
