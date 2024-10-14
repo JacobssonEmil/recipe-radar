@@ -154,18 +154,23 @@ export default function Home() {
                 <ChevronRight className="ml-1 h-4 w-4 mt-1" />
               </Link>
             </div>
+
             <swiper-container
+              style={{
+                maxWidth: "100%",
+                margin: "0 auto",
+                display: "flex",
+                justifyContent: "center",
+              }}
               breakpoints={JSON.stringify({
                 710: {
                   slidesPerView: 2,
                   spaceBetween: 20,
                 },
-
                 1040: {
                   slidesPerView: 3,
                   spaceBetween: 40,
                 },
-
                 1355: {
                   slidesPerView: 4,
                   spaceBetween: 50,
@@ -176,23 +181,32 @@ export default function Home() {
               scrollbar-clickable="true"
               mousewheel-invert="false"
             >
-              <swiper-slide>
+              <swiper-slide
+                style={{ display: "flex", justifyContent: "center" }}
+              >
                 <RecipeCard recipe={recipes[0]} />
               </swiper-slide>
-              <swiper-slide>
+              <swiper-slide
+                style={{ display: "flex", justifyContent: "center" }}
+              >
                 <RecipeCard recipe={recipes[1]} />
               </swiper-slide>
-              <swiper-slide>
+              <swiper-slide
+                style={{ display: "flex", justifyContent: "center" }}
+              >
                 <RecipeCard recipe={recipes[2]} />
               </swiper-slide>
-              <swiper-slide>
+              <swiper-slide
+                style={{ display: "flex", justifyContent: "center" }}
+              >
                 <RecipeCard recipe={recipes[3]} />
               </swiper-slide>
-              <swiper-slide>
+              <swiper-slide
+                style={{ display: "flex", justifyContent: "center" }}
+              >
                 <RecipeCard recipe={recipes[4]} />
               </swiper-slide>
             </swiper-container>
-            {/**<RecipeCard recipe={recipes[0]} /> */}
           </div>
         </div>
       </div>
