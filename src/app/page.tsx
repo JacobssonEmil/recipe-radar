@@ -1,7 +1,13 @@
+"use client";
 import Header from "@/components/home/header";
 import RecipeCard from "@/components/recipe-card";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
+
+// import function to register Swiper custom elements
+import { register } from "swiper/element/bundle";
+// register Swiper custom elements
+register();
 
 interface Recipe {
   id: string;
@@ -15,12 +21,8 @@ interface Recipe {
   category: string;
 }
 
-async function getRecipes(): Promise<Recipe[]> {
-  /**
-   * TODO: Replace with with API call.
-   * ? Recipes on this page can be hardcoded as they are not fetched based on user action?
-   */
-  return [
+export default function Home() {
+  const recipes = [
     {
       id: "1",
       name: "Baked Ravioli Casserole",
@@ -110,10 +112,6 @@ async function getRecipes(): Promise<Recipe[]> {
       category: "Popular Recipes",
     },
   ];
-}
-
-export default async function Home() {
-  const recipes = await getRecipes();
 
   // Filter recipes by category
   const popularRecipes = recipes.filter(
@@ -141,12 +139,6 @@ export default async function Home() {
                 <ChevronRight className="ml-1 h-4 w-4 mt-1" />
               </Link>
             </div>
-
-            <div className="flex flex-row justify-between gap-6 mt-6">
-              {popularRecipes.map((recipe) => (
-                <RecipeCard key={recipe.id} recipe={recipe} />
-              ))}
-            </div>
           </div>
 
           {/** Quick & Easy Dinner */}
@@ -162,11 +154,45 @@ export default async function Home() {
                 <ChevronRight className="ml-1 h-4 w-4 mt-1" />
               </Link>
             </div>
-            <div className="flex flex-row justify-between gap-6 mt-6">
-              {quickAndEasyDinner.map((recipe) => (
-                <RecipeCard key={recipe.id} recipe={recipe} />
-              ))}
-            </div>
+            <swiper-container
+              breakpoints={JSON.stringify({
+                710: {
+                  slidesPerView: 2,
+                  spaceBetween: 20,
+                },
+
+                1040: {
+                  slidesPerView: 3,
+                  spaceBetween: 40,
+                },
+
+                1355: {
+                  slidesPerView: 4,
+                  spaceBetween: 50,
+                },
+              })}
+              slides-per-view="1"
+              space-between="20"
+              scrollbar-clickable="true"
+              mousewheel-invert="false"
+            >
+              <swiper-slide>
+                <RecipeCard recipe={recipes[0]} />
+              </swiper-slide>
+              <swiper-slide>
+                <RecipeCard recipe={recipes[1]} />
+              </swiper-slide>
+              <swiper-slide>
+                <RecipeCard recipe={recipes[2]} />
+              </swiper-slide>
+              <swiper-slide>
+                <RecipeCard recipe={recipes[3]} />
+              </swiper-slide>
+              <swiper-slide>
+                <RecipeCard recipe={recipes[4]} />
+              </swiper-slide>
+            </swiper-container>
+            {/**<RecipeCard recipe={recipes[0]} /> */}
           </div>
         </div>
       </div>
