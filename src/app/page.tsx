@@ -12,6 +12,24 @@ const recipe1 = {
   cookingTime: "10 min",
   calories: 280,
 };
+const recipe2 = {
+  name: "Baked Ravioli Casserole",
+  image: "/recipe2.jpg",
+  likes: 1234,
+  rating: 4.5,
+  description: "Creamy avocado on crispy sourdough bread.",
+  cookingTime: "10 min",
+  calories: 280,
+};
+const recipe3 = {
+  name: "Baked Ravioli Casserole",
+  image: "/recipe3.jpg",
+  likes: 1234,
+  rating: 4.5,
+  description: "Creamy avocado on crispy sourdough bread.",
+  cookingTime: "10 min",
+  calories: 280,
+};
 
 export default function Home() {
   return (
@@ -34,9 +52,9 @@ export default function Home() {
             </div>
 
             <div className="flex flex-row justify-between gap-6 mt-6 ">
-              <RecipeCard recipe={recipe1} />
-              <RecipeCard recipe={recipe1} />
-              <RecipeCard recipe={recipe1} />
+              <RecipeCard recipe={recipe3} />
+              <RecipeCard recipe={recipe2} />
+              <RecipeCard recipe={recipe3} />
               <RecipeCard recipe={recipe1} />
             </div>
           </div>
@@ -55,9 +73,9 @@ export default function Home() {
             </div>
             <div className="flex flex-row justify-between gap-6 mt-6 ">
               <RecipeCard recipe={recipe1} />
-              <RecipeCard recipe={recipe1} />
-              <RecipeCard recipe={recipe1} />
-              <RecipeCard recipe={recipe1} />
+              <RecipeCard recipe={recipe3} />
+              <RecipeCard recipe={recipe2} />
+              <RecipeCard recipe={recipe3} />
             </div>
           </div>
         </div>

@@ -44,10 +44,10 @@ export default function Nav() {
         <div className="flex justify-between items-center h-16 mx-auto px-4 sm:px-6 lg:px-8">
           <Link href="/" className="flex items-center space-x-2">
             <UtensilsCrossed className="h-6 w-6 " />
-            <span className="text-xl font-medium">RecipeRadar</span>
+            <span className="text-xl font-semibold">RecipeRadar</span>
           </Link>
           {/* Large Screen */}
-          <div className="hidden sm:flex items-center gap-6 absolute left-1/2 transform -translate-x-1/2">
+          <div className="hidden font-semibold sm:flex items-center gap-6 absolute left-1/2 transform -translate-x-1/2">
             <Link href="/">
               <p className="cursor-pointer relative inline-block before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full">
                 Home
@@ -93,7 +93,7 @@ export default function Nav() {
           <div className="hidden sm:flex items-center gap-4">
             <Link href="/login" className="flex flex-row ">
               <FaRegUser className="mt-1 mr-1" />
-              <p className="cursor-pointer relative inline-block before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full">
+              <p className="font-semibold cursor-pointer relative inline-block before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full">
                 Sign In
               </p>{" "}
             </Link>
