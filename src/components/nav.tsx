@@ -44,7 +44,7 @@ export default function Nav() {
         <div className="flex justify-between items-center h-16 mx-auto px-4 sm:px-6 lg:px-8">
           <Link href="/" className="flex items-center space-x-2">
             <UtensilsCrossed className="h-6 w-6 " />
-            <span className="text-xl font-bold">RecipeRadar</span>
+            <span className="text-xl font-medium">RecipeRadar</span>
           </Link>
           {/* Large Screen */}
           <div className="hidden sm:flex items-center gap-6 absolute left-1/2 transform -translate-x-1/2">

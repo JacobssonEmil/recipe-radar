@@ -15,6 +15,7 @@ export default function Header() {
           Explore a world of culinary delights, save your favorites, and share
           your own creations with our community of food lovers.
         </p>
+
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
           <div className="relative w-full max-w-md">
             <Search className="absolute left-2 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
