@@ -116,7 +116,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="mt-8 pt-8 md:mt-12 md:pt-12 border-t border-muted-foreground text-center text-sm text-muted-foreground">
           <p>
-            &copy; {new Date().getFullYear()} RecipeRover. All rights reserved.
+            &copy; {new Date().getFullYear()} RecipeRadar. All rights reserved.
           </p>
         </div>
       </div>

@@ -91,26 +91,31 @@ body {
   background-color: var(--primary);
   transition: all 300ms;
 }
-
-.swiper {
-  width: 100%;
-  height: 100%;
-}
-
-.swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-
-  /* Center slide text vertically */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.swiper-slide img {
+/* Default styles: Swiper is visible on smaller screens, flex is hidden */
+.swiper-container {
   display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+}
+
+.flex-container {
+  display: none;
+}
+
+/* Media query for larger screens */
+@media (min-width: 1000px) {
+  .swiper-container {
+    display: none;
+  }
+
+  .flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .flex-container .card {
+    width: 320px;
+    flex-shrink: 0;
+  }
 }
