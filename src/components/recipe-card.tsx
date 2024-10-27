@@ -22,7 +22,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
   return (
     <Card key={recipe.name} className="overflow-hidden  max-w-80 mb-10">
       <Link href={`/recipes/${recipe.name.toLowerCase().replace(/\s+/g, "-")}`}>
-        <div className="relative w-full h-48">
+        <div className="relative w-full h-40">
           <Image
             src={recipe.image}
             alt={recipe.name}

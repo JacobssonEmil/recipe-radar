@@ -1,14 +1,31 @@
-import React, { useRef, useState } from "react";
+import React from "react";
+import RecipeCard from "../recipe-card";
 import { Swiper, SwiperSlide } from "swiper/react";
-// Import Swiper styles
 
 import "swiper/css";
 import "swiper/css/pagination";
 
-import RecipeCard from "../recipe-card";
+import { Pagination } from "swiper/modules";
 
-export default function CardsSwiper() {
-  const recipes = [
+interface Recipe {
+  id: string;
+  name: string;
+  image: string;
+  likes: number;
+  rating: number;
+  description: string;
+  cookingTime: string;
+  calories: number;
+  category: string;
+}
+
+interface CardsSwiperProps {
+  category: string;
+}
+
+export default function CardsSwiper({ category }: CardsSwiperProps) {
+  // TODO: Replace with API call
+  const recipes: Recipe[] = [
     {
       id: "1",
       name: "Baked Ravioli Casserole",
@@ -97,35 +114,83 @@ export default function CardsSwiper() {
       calories: 480,
       category: "Popular Recipes",
     },
+    {
+      id: "9",
+      name: "Quinoa Salad",
+      image: "/recipe2.jpg",
+      likes: 345,
+      rating: 4.1,
+      description: "Healthy quinoa mixed with fresh vegetables.",
+      cookingTime: "25 min",
+      calories: 250,
+      category: "Quick & Easy Dinner",
+    },
+    {
+      id: "10",
+      name: "Eggplant Parmesan",
+      image: "/recipe1.jpg",
+      likes: 675,
+      rating: 4.3,
+      description: "Baked eggplant with marinara sauce and cheese.",
+      cookingTime: "50 min",
+      calories: 480,
+      category: "Popular Recipes",
+    },
+    {
+      id: "11",
+      name: "Quinoa Salad",
+      image: "/recipe2.jpg",
+      likes: 345,
+      rating: 4.1,
+      description: "Healthy quinoa mixed with fresh vegetables.",
+      cookingTime: "25 min",
+      calories: 250,
+      category: "Quick & Easy Dinner",
+    },
+    {
+      id: "12",
+      name: "Eggplant Parmesan",
+      image: "/recipe1.jpg",
+      likes: 675,
+      rating: 4.3,
+      description: "Baked eggplant with marinara sauce and cheese.",
+      cookingTime: "50 min",
+      calories: 480,
+      category: "Popular Recipes",
+    },
   ];
 
-  // Filter recipes by category
-  const popularRecipes = recipes.filter(
-    (recipe) => recipe.category === "Popular Recipes"
-  );
-  const quickAndEasyRecipes = recipes.filter(
-    (recipe) => recipe.category === "Quick & Easy Dinner"
-  );
+  // TODO: Replace with API call
+  const filteredRecipes = category
+    ? recipes.filter((recipe) => recipe.category === category)
+    : recipes;
 
   return (
     <>
-      {/* Swiper for Quick & Easy Dinner */}
-
-      <Swiper
-        slidesPerView={2}
-        spaceBetween={30}
-        pagination={{
-          clickable: true,
-        }}
-        className="mySwiper"
-      >
-        {popularRecipes.map((recipe) => (
-          <SwiperSlide key={recipe.id}>
+      <div className="1350px:hidden">
+        <Swiper
+          slidesPerView={"auto"}
+          spaceBetween={20}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[Pagination]}
+          className="mySwiper"
+        >
+          {filteredRecipes.map((recipe) => (
+            <SwiperSlide key={recipe.id} style={{ width: "290px" }}>
+              <RecipeCard recipe={recipe} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+      <div className="hidden 1350px:flex gap-6 justify-between">
+        {filteredRecipes.slice(0, 4).map((recipe) => (
+          <SwiperSlide key={recipe.id} style={{ width: "290px" }}>
             <RecipeCard recipe={recipe} />
           </SwiperSlide>
         ))}
-      </Swiper>
+      </div>
     </>
   );
 }
-/** */

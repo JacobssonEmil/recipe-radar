@@ -41,7 +41,7 @@ export default function Home() {
                 <ChevronRight className="ml-1 h-4 w-4 mt-1" />
               </Link>
             </div>
-            <CardsSwiper />
+            <CardsSwiper category={"Popular Recipes"} />
           </div>
 
           {/** Quick & Easy Dinner */}
@@ -60,7 +60,7 @@ export default function Home() {
           </div>
         </div>
         <div className="">
-          <CardsSwiper />
+          <CardsSwiper category={"Quick & Easy Dinner"} />
         </div>
       </div>
     </>
