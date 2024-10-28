@@ -51,6 +51,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <Nav />
+
             {children}
             <Footer />
           </ThemeProvider>
