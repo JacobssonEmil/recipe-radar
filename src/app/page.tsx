@@ -1,30 +1,49 @@
 "use client";
 import Header from "@/components/home/header";
-import RecipeCard from "@/components/recipe-card";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import CardsSwiper from "@/components/home/cards-swiper";
+import React, { useState, useEffect } from "react";
 
 // import function to register Swiper custom elements
 import { register } from "swiper/element/bundle";
 // register Swiper custom elements
 register();
 
+// Define the type for a recipe
 interface Recipe {
-  id: string;
+  id: number;
   name: string;
-  image: string;
-  likes: number;
-  rating: number;
   description: string;
-  cookingTime: string;
-  calories: number;
-  category: string;
 }
 
 export default function Home() {
+  // Use the Recipe type for the recipes state
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
+
+  useEffect(() => {
+    fetch("/api/recipes")
+      .then((res) => res.json())
+      .then((data) => {
+        setRecipes(data.recipes);
+      })
+      .catch((error) => {
+        console.error("Error fetching recipes:", error);
+      });
+  }, []);
+
   return (
     <>
+      <div>
+        {recipes.map((recipe, index) => (
+          <li key={index} className="p-4 border rounded-md shadow-sm">
+            <Link href={`/recipe/${recipe.id}`}>
+              <span className="text-lg font-semibold">{recipe.name}</span>
+            </Link>
+            <p className="text-sm text-gray-600">{recipe.description}</p>
+          </li>
+        ))}
+      </div>
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         <Header />
         <div className="flex flex-col gap-12 mt-12 md:mt-24">
