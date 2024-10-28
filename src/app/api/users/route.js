@@ -10,8 +10,10 @@ export async function GET() {
 }
 
 export async function POST(request) {
-  const { email } = await request.json();
-  const { data, error } = await supabase.from("users").insert([{ email }]);
+  const { email, name } = await request.json();
+  const { data, error } = await supabase
+    .from("users")
+    .insert([{ email, name }]);
   if (error)
     return new Response(JSON.stringify({ error: error.message }), {
       status: 400,
