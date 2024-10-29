@@ -10,7 +10,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="bg-secondary-foreground dark:bg-background mt-24 dark:border-t dark:border-muted-foreground">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-12 max-w-[1400px]">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 justify-items-start md:justify-items-center">
           {/* Newsletter Column */}
           <div className="space-y-4 text-left md:text-left">
