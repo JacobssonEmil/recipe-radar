@@ -6,6 +6,7 @@ import React from "react";
 // import function to register Swiper custom elements
 import { register } from "swiper/element/bundle";
 import CategorySelector from "@/components/home/category-selector";
+import CardsSwiper from "@/components/home/cards-swiper";
 // register Swiper custom elements
 register();
 
