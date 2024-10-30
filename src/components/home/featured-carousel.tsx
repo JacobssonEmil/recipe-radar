@@ -36,7 +36,7 @@ const recipes = [
   },
 ];
 
-export default function Header() {
+export default function FeaturedCarousel() {
   return (
     <>
       {/** SM AND ABOVE VIEW */}
