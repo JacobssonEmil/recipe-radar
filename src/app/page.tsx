@@ -7,6 +7,7 @@ import React from "react";
 import { register } from "swiper/element/bundle";
 import CategorySelector from "@/components/home/category-selector";
 import NewsletterSignup from "@/components/newsletter-signup";
+import CardsSwiper from "@/components/home/cards-swiper";
 // register Swiper custom elements
 register();
 
@@ -34,7 +35,15 @@ export default function Home() {
         </section>
         <CategorySelector />
 
-        {/* Browse by Category Intro Section */}
+        {/*CardsSwiper Intro Section */}
+        <section className="mt-24 sm:mt-36 mb-6 sm:mb-8">
+          <h2 className="text-2xl font-semibold tracking-tight">
+            October Recipes
+          </h2>
+          <div className="mt-2 w-16 h-1 bg-gradient-to-r from-green-400 via-green-600 to-green-400 rounded-full"></div>
+        </section>
+        <CardsSwiper category={"Popular Recipes"} />
+        {/* Newsletter Intro Section */}
         <section className="mt-24 sm:mt-36 mb-6 sm:mb-8">
           <h2 className="text-2xl font-semibold tracking-tight">
             Get Weekly Recipe Inspiration
