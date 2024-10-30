@@ -11,6 +11,7 @@ import { Clock } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import Autoplay from "embla-carousel-autoplay";
 
 const recipes = [
   {
@@ -39,7 +40,18 @@ export default function Header() {
   return (
     <>
       {/** SM AND ABOVE VIEW */}
-      <Carousel className="hidden sm:block">
+      <Carousel
+        opts={{
+          align: "start",
+          loop: true,
+        }}
+        plugins={[
+          Autoplay({
+            delay: 6000,
+          }),
+        ]}
+        className="hidden sm:block"
+      >
         <CarouselContent>
           {recipes.map((recipe, index) => (
             <CarouselItem key={index}>
@@ -52,7 +64,7 @@ export default function Header() {
                 <div className="absolute inset-0 bg-gradient-to-r from-black via-black/5 to-transparent bg-opacity-40 rounded-2xl"></div>
                 <div className="md:w-1/2 w-full p-6 md:p-8 h-full flex flex-col justify-between relative z-10">
                   <div>
-                    <Badge className="py-1 text-white bg-green-700 bg-opacity-90 border">
+                    <Badge className="py-1 text-white bg-green-700 hover:none">
                       <FaFireAlt color="orange" className="mr-1" />
                       Hot Recipes
                     </Badge>
@@ -120,7 +132,7 @@ export default function Header() {
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/30 to-transparent bg-opacity-40 rounded-2xl"></div>
 
           <div className="p-4 rounded-3xl w-full flex flex-col items-start relative z-10">
-            <Badge className="py-1 text-white bg-green-700 bg-opacity-90 border  mb-4">
+            <Badge className="py-1 text-white bg-green-700 hover:none  mb-4">
               <FaFireAlt color="orange" className="mr-1" />
               Hot Recipes
             </Badge>
