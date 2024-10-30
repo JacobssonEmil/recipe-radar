@@ -6,6 +6,7 @@ import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import { ClerkProvider } from "@clerk/nextjs";
 import Script from "next/script";
+import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -51,7 +52,7 @@ export default function RootLayout({
 
             {/* Main content area with flex-grow to push footer down */}
             <main className="flex-grow">{children}</main>
-
+            <Toaster />
             <Footer />
           </ThemeProvider>
         </body>

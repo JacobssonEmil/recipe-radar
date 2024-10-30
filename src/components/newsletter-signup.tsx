@@ -4,16 +4,21 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Mail } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 export default function NewsletterSignup() {
   const [email, setEmail] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the email to your backend
+
     console.log("Submitted email:", email);
-    setIsSubmitted(true);
+    toast({
+      title: "You're Subscribed to Our Recipe Newsletter!",
+      description:
+        "You’re all set! Get ready for delicious recipes, cooking tips, and kitchen inspiration delivered right to your inbox.",
+    });
   };
 
   return (
@@ -21,7 +26,7 @@ export default function NewsletterSignup() {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="flex items-center space-x-2">
           <Mail className="w-5 h-5 text-green-600" />
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-muted-foreground">
             Get delicious recipes delivered to your inbox weekly
           </p>
         </div>
