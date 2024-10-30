@@ -4,13 +4,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
-import {
-  ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
+import Script from "next/script";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -37,7 +32,11 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <head>
-          <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+          {/* //! MIGHT CAUSE ISSUES WITH SIPER */}
+          <Script
+            src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"
+            strategy="lazyOnload"
+          />
         </head>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}

@@ -5,7 +5,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import { FaSearch } from "react-icons/fa";
 
 export default function Login() {
   return (
@@ -110,7 +109,7 @@ export default function Login() {
           {/* Register Link */}
           <p className="mt-8 text-md">
             <span className="text-muted-foreground">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
             </span>
             <Link href={"/register"} className="">
               <Button variant={"link"} className="p-0 text-md">

@@ -1,9 +1,7 @@
 "use client";
 import Header from "@/components/home/header";
-import { ChevronRight } from "lucide-react";
-import Link from "next/link";
-import CardsSwiper from "@/components/home/cards-swiper";
-import React, { useState, useEffect } from "react";
+
+import React from "react";
 
 // import function to register Swiper custom elements
 import { register } from "swiper/element/bundle";
