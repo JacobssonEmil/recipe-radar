@@ -67,7 +67,7 @@ export default function UploadRecipe() {
   };
 
   return (
-    <main className="flex-grow mt-12 md:mt-24">
+    <main className="flex-grow mt-12 md:mt-12">
       <div className="max-w-4xl mx-auto py-8 px-0 sm:px-6 lg:px-8">
         <Card className="border-none shadow-none md:border-solid">
           <CardHeader>
