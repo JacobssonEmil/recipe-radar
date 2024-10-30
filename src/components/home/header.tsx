@@ -57,7 +57,7 @@ export default function Header() {
                     </p>
                     <div className="flex items-center mt-6 md:mt-8 space-x-2 text-xs md:text-sm lg:text-base">
                       <div className="flex items-center text-muted-foreground">
-                        <Clock className="mr-1 md:mr-2" />
+                        <Clock className="mr-1 md:mr-2" size={18} />
                         {recipe.time}
                       </div>
                       <div className="flex items-center text-muted-foreground">
@@ -113,47 +113,45 @@ export default function Header() {
         <CarouselNext />
       </Carousel>
 
-      <div className="sm:hidden flex flex-col md:flex-row items-center bg-muted sm:p-8 p-2 rounded-3xl ">
-        <div className="md:w-1/2 p-4">
-          <Badge variant={"default"} className="py-1">
+      <div
+        className="sm:hidden flex flex-col items-center text-white rounded-3xl backdrop-blur-lg"
+        style={{
+          backgroundImage: `url('${recipes[0].image}')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="bg-black bg-opacity-50 p-4 rounded-3xl w-full flex flex-col items-start">
+          <Badge variant={"default"} className="py-1 mb-4">
             <FaFireAlt color="orange" className="mr-1" />
             Hot Recipes
           </Badge>
-          <h1 className="text-3xl md:text-4xl font-bold mt-4">
-            {recipes[0].title}
-          </h1>
-          <p className="text-muted-foreground mt-2">{recipes[0].description}</p>
-          <div className="flex items-center mt-4 space-x-2">
-            <div className="flex items-center text-muted-foreground">
-              <Clock className="mr-2" />
+          <h1 className="text-3xl font-bold mb-2">{recipes[0].title}</h1>
+          <p className="text-sm mb-4">{recipes[0].description}</p>
+          <div className="flex items-center space-x-2 mb-4 text-xs">
+            <div className="flex items-center">
+              <Clock className="mr-1" />
               <span>{recipes[0].time}</span>
             </div>
-            <div className="flex items-center text-muted-foreground">
-              <span>•</span>
-            </div>
-            <div className="flex items-center text-muted-foreground">
+            <span>•</span>
+            <div className="flex items-center">
               <span>{recipes[0].calories}</span>
             </div>
           </div>
-          <div className="md:flex items-center mt-12">
-            <div className="flex flex-row">
-              <Avatar className="mr-2">
-                <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>
-                  {recipes[0].author
-                    .split(" ")
-                    .map((word) => word[0])
-                    .join("")}
-                </AvatarFallback>
-              </Avatar>
-              <div className="flex flex-col">
-                <span className="text-muted-foreground text-sm">
-                  {recipes[0].author}
-                </span>
-                <span className="text-muted-foreground text-sm">
-                  {recipes[0].date}
-                </span>
-              </div>
+          <div className="flex items-center">
+            <Avatar className="mr-2">
+              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarFallback>
+                {recipes[0].author
+                  .split(" ")
+                  .map((word) => word[0])
+                  .join("")}
+              </AvatarFallback>
+            </Avatar>
+            <div className="flex flex-col">
+              <span className="text-xs">{recipes[0].author}</span>
+              <span className="text-xs">{recipes[0].date}</span>
             </div>
           </div>
         </div>
