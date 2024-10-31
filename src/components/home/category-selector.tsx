@@ -26,7 +26,7 @@ export default function Component() {
           <Button
             key={category}
             variant="outline"
-            className="flex-grow sm:flex-grow-0 py-6 px-8 text-md"
+            className="flex-grow sm:flex-grow-0 py-6 px-8 "
             onClick={() => handleCategoryClick(category)}
           >
             {category}
@@ -34,7 +34,7 @@ export default function Component() {
         ))}
         <Button
           variant="default"
-          className="flex-grow sm:flex-grow-0 text-md py-6 px-8"
+          className="flex-grow sm:flex-grow-0  py-6 px-8"
           onClick={() => alert("View All Categories")}
         >
           <span>View All Categories</span>
