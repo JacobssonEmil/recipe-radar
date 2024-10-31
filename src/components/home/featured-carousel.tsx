@@ -16,6 +16,7 @@ import Autoplay from "embla-carousel-autoplay";
 const recipes = [
   {
     title: "Spicy Delicious Chicken Wings",
+    id: "0",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum hic enim recusandae, aliquid cupiditate quia ut quibusdam, id eius soluta fugiat.",
     time: "30 Minutes",
@@ -26,6 +27,7 @@ const recipes = [
   },
   {
     title: "Fresh Avocado Salad",
+    id: "1",
     description:
       "Enjoy this refreshing salad with a mix of avocado, lime, and fresh herbs for a zesty, healthy option.",
     time: "15 Minutes",
@@ -55,62 +57,63 @@ export default function FeaturedCarousel() {
         <CarouselContent>
           {recipes.map((recipe, index) => (
             <CarouselItem key={index}>
-              <div
-                className="flex flex-row items-center rounded-3xl h-full justify-between backdrop-blur-lg bg-cover bg-center relative "
-                style={{
-                  backgroundImage: `url('${recipe.image}')`,
-                }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-black via-black/5 to-transparent bg-opacity-40 rounded-2xl"></div>
-                <div className="md:w-1/2 w-full p-6 md:p-8 h-full flex flex-col justify-between relative z-10">
-                  <div>
-                    <Badge className="py-1 text-white bg-green-700 hover:none">
-                      <FaFireAlt color="orange" className="mr-1" />
-                      Hot Recipes
-                    </Badge>
-                    <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold mt-6 md:mt-8 text-white drop-shadow-md">
-                      {recipe.title}
-                    </h1>
-                    <p className="text-white mt-6 md:mt-8 text-sm md:text-base lg:text-lg drop-shadow-md">
-                      {recipe.description}
-                    </p>
-                    <div className="flex items-center mt-6 md:mt-8 space-x-2 text-xs md:text-sm lg:text-base text-white drop-shadow-md">
-                      <div className="flex items-center">
-                        <Clock className="mr-1 md:mr-2" size={18} />
-                        {recipe.time}
+              <Link href={`/recipe/${recipe.id}`}>
+                <div
+                  className="flex flex-row items-center rounded-3xl h-full justify-between backdrop-blur-lg bg-cover bg-center relative"
+                  style={{
+                    backgroundImage: `url('${recipe.image}')`,
+                  }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-black via-black/5 to-transparent bg-opacity-40 rounded-2xl"></div>
+                  <div className="md:w-1/2 w-full p-6 md:p-8 h-full flex flex-col justify-between relative z-10">
+                    <div>
+                      <Badge className="py-1 text-white bg-green-700 hover:none">
+                        <FaFireAlt color="orange" className="mr-1" />
+                        Hot Recipes
+                      </Badge>
+                      <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold mt-6 md:mt-8 text-white drop-shadow-md">
+                        {recipe.title}
+                      </h1>
+                      <p className="text-white mt-6 md:mt-8 text-sm md:text-base lg:text-lg drop-shadow-md">
+                        {recipe.description}
+                      </p>
+                      <div className="flex items-center mt-6 md:mt-8 space-x-2 text-xs md:text-sm lg:text-base text-white drop-shadow-md">
+                        <div className="flex items-center">
+                          <Clock className="mr-1 md:mr-2" size={18} />
+                          {recipe.time}
+                        </div>
+                        <div className="flex items-center">
+                          <span>•</span>
+                        </div>
+                        <div className="flex items-center">
+                          {recipe.calories}
+                        </div>
                       </div>
-                      <div className="flex items-center">
-                        <span>•</span>
-                      </div>
-                      <div className="flex items-center">{recipe.calories}</div>
                     </div>
-                  </div>
-                  <div className="flex items-center mt-12 md:mt-16">
-                    <div className="flex flex-row items-center">
-                      <Avatar className="mr-2">
-                        <AvatarImage src="https://github.com/shadcn.png" />
-                        <AvatarFallback>
-                          {recipe.author
-                            .split(" ")
-                            .map((word) => word[0])
-                            .join("")}
-                        </AvatarFallback>
-                      </Avatar>
-                      <div className="flex flex-col">
-                        <span className="text-white text-xs md:text-sm drop-shadow-md">
-                          {recipe.author}
-                        </span>
-                        <span className="text-white text-xs md:text-sm drop-shadow-md">
-                          {recipe.date}
-                        </span>
+                    <div className="flex items-center mt-12 md:mt-16">
+                      <div className="flex flex-row items-center">
+                        <Avatar className="mr-2">
+                          <AvatarImage src="https://github.com/shadcn.png" />
+                          <AvatarFallback>
+                            {recipe.author
+                              .split(" ")
+                              .map((word) => word[0])
+                              .join("")}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div className="flex flex-col">
+                          <span className="text-white text-xs md:text-sm drop-shadow-md">
+                            {recipe.author}
+                          </span>
+                          <span className="text-white text-xs md:text-sm drop-shadow-md">
+                            {recipe.date}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <Button className="z-20 ml-auto mr-4 mt-auto mb-4 text-white bg-black hover:bg-black border border-white">
-                  View Recipe
-                </Button>
-              </div>
+              </Link>
             </CarouselItem>
           ))}
         </CarouselContent>
