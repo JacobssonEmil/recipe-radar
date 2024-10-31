@@ -9,7 +9,6 @@ import { Badge } from "../ui/badge";
 import { FaFireAlt } from "react-icons/fa";
 import { Clock } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "../ui/button";
 import Link from "next/link";
 import Autoplay from "embla-carousel-autoplay";
 
