@@ -2,9 +2,8 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Utensils, Search, Menu } from "lucide-react";
+import { Utensils, Menu } from "lucide-react";
 
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -12,15 +11,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+
+import { ModeToggle } from "./ui/toggle-mode";
 
 const categories = [
   "Breakfast",
@@ -46,42 +39,44 @@ const categories = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
-  const [isSearchOpen, setIsSearchOpen] = React.useState(false);
 
   return (
-    <nav className="bg-background border-b">
-      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center">
-            <Link href="/" className="flex-shrink-0">
-              <Utensils className="h-8 w-8 text-primary" />
-            </Link>
-            <div className="hidden lg:block ml-10 items-baseline space-x-4">
+    <nav className="border-b">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative flex items-center justify-between h-16">
+          {/* Logo */}
+          <Link href="/" className="flex-shrink-0">
+            <Utensils />
+          </Link>
+
+          {/* Desktop Navigation Links */}
+          <div className="hidden lg:block lg:absolute lg:inset-0 lg:flex lg:items-center lg:justify-center">
+            <div className="flex items-baseline space-x-4">
               <Link
                 href="/"
-                className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+                className="px-3 py-2 rounded-md text-sm font-medium"
               >
                 Home
               </Link>
               <Link
                 href="/upload-recipe"
-                className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+                className="px-3 py-2 rounded-md text-sm font-medium"
               >
                 Upload
               </Link>
               <Link
                 href="/my-recipes"
-                className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+                className="px-3 py-2 rounded-md text-sm font-medium"
               >
                 My Recipes
               </Link>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <a className="hover:cursor-pointer text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium">
+                  <a className="hover:cursor-pointer px-3 py-2 rounded-md text-sm font-medium">
                     Categories
                   </a>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-screen left-0 mt-2 ">
+                <DropdownMenuContent className="w-screen left-0 mt-2">
                   <div className="grid grid-cols-4 lg:grid-cols-5 gap-4 p-4">
                     {categories.map((category) => (
                       <DropdownMenuItem key={category} asChild>
@@ -95,45 +90,23 @@ export default function Navbar() {
               </DropdownMenu>
               <Link
                 href="/browse"
-                className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+                className="px-3 py-2 rounded-md text-sm font-medium"
               >
                 Browse
               </Link>
             </div>
           </div>
-          <div className="hidden lg:block">
-            <div className="ml-4 flex items-center lg:ml-6">
-              <Dialog open={isSearchOpen} onOpenChange={setIsSearchOpen}>
-                <DialogTrigger asChild>
-                  <Button variant="ghost" size="icon">
-                    <Search className="h-4 w-4" />
-                    <span className="sr-only">Search recipes</span>
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px]">
-                  <DialogHeader>
-                    <DialogTitle>Search Recipes</DialogTitle>
-                  </DialogHeader>
-                  <div className="grid gap-4 py-4">
-                    <div className="grid grid-cols-4 items-center gap-4">
-                      <Input
-                        id="search"
-                        placeholder="Search recipes..."
-                        className="col-span-4"
-                      />
-                    </div>
-                  </div>
-                  <Button type="submit">Search</Button>
-                </DialogContent>
-              </Dialog>
-              <Button variant="outline" className="ml-4" size={"sm"}>
-                Sign in
-              </Button>
-              <Button className="ml-4" size={"sm"}>
-                Sign up
-              </Button>
-            </div>
+
+          {/* Sign-in Buttons */}
+          <div className="hidden lg:flex items-center gap-2">
+            <Button variant="outline" size="sm">
+              Sign in
+            </Button>
+            <Button size="sm">Get Started</Button>
+            <ModeToggle />
           </div>
+
+          {/* Mobile Menu Button */}
           <div className="lg:hidden">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
@@ -146,28 +119,28 @@ export default function Navbar() {
                 <nav className="flex flex-col gap-4">
                   <Link
                     href="/"
-                    className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+                    className="px-3 py-2 rounded-md text-sm font-medium"
                     onClick={() => setIsOpen(false)}
                   >
                     Home
                   </Link>
                   <Link
                     href="/upload-recipe"
-                    className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+                    className="px-3 py-2 rounded-md text-sm font-medium"
                     onClick={() => setIsOpen(false)}
                   >
                     Upload
                   </Link>
                   <Link
                     href="/my-recipes"
-                    className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+                    className="px-3 py-2 rounded-md text-sm font-medium"
                     onClick={() => setIsOpen(false)}
                   >
                     My Recipes
                   </Link>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <a className="hover:cursor-pointer text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium">
+                      <a className="hover:cursor-pointer px-3 py-2 rounded-md text-sm font-medium">
                         Categories
                       </a>
                     </DropdownMenuTrigger>
@@ -186,36 +159,23 @@ export default function Navbar() {
                   </DropdownMenu>
                   <Link
                     href="/browse"
-                    className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+                    className="px-3 py-2 rounded-md text-sm font-medium"
                     onClick={() => setIsOpen(false)}
                   >
                     Browse
                   </Link>
                   <Button
-                    variant="ghost"
-                    className="justify-start px-3 py-2 text-sm font-medium"
-                    onClick={() => {
-                      setIsOpen(false);
-                      setIsSearchOpen(true);
-                    }}
-                  >
-                    <Search className="h-5 w-5 mr-2" />
-                    Search
-                  </Button>
-                  <Button
                     variant="outline"
                     className="justify-start"
                     onClick={() => setIsOpen(false)}
-                    size={"sm"}
                   >
                     Sign in
                   </Button>
                   <Button
                     className="justify-start"
                     onClick={() => setIsOpen(false)}
-                    size={"sm"}
                   >
-                    Sign up
+                    Get Started
                   </Button>
                 </nav>
               </SheetContent>
