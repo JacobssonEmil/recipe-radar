@@ -1,175 +1,228 @@
 "use client";
 
-import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
+import * as React from "react";
 import Link from "next/link";
-import { JSX, SVGProps, useEffect, useState } from "react";
-import { ChefHat, Moon, Sun } from "lucide-react";
+import { Utensils, Search, Menu } from "lucide-react";
 
-export default function Component() {
-  const [isDark, setIsDark] = useState(false);
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
-  useEffect(() => {
-    const isDarkMode = document.documentElement.classList.contains("dark");
-    setIsDark(isDarkMode);
-  }, []);
+const categories = [
+  "Breakfast",
+  "Lunch",
+  "Dinner",
+  "Desserts",
+  "Vegetarian",
+  "Vegan",
+  "Gluten-Free",
+  "Quick & Easy",
+  "Appetizers",
+  "Snacks",
+  "Soups",
+  "Salads",
+  "Main Dishes",
+  "Side Dishes",
+  "Pasta",
+  "Pizza",
+  "Sandwiches",
+  "Burgers",
+  "Wraps",
+];
 
-  const toggleDarkMode = () => {
-    const newMode = !isDark;
-    setIsDark(newMode);
-    document.documentElement.classList.toggle("dark");
-  };
+export default function Navbar() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [isSearchOpen, setIsSearchOpen] = React.useState(false);
 
   return (
-    <header className="flex h-20 w-full shrink-0 items-center px-4 md:px-6 lg:shadow-md lg:dark:border-2">
-      <Sheet>
-        <SheetTrigger asChild>
-          <Button variant="outline" size="icon" className="lg:hidden">
-            <MenuIcon className="h-6 w-6" />
-            <span className="sr-only">Toggle navigation menu</span>
-          </Button>
-        </SheetTrigger>
-        <SheetContent side="left">
-          <Link
-            href="#"
-            className="flex items-center gap-2 mb-6"
-            prefetch={false}
-          >
-            <ChefHat className="h-6 w-6" />
-            <span className="font-semibold">Recipe Radar</span>
-          </Link>
-          <div className="grid gap-2 py-6">
-            <Link
-              href="#"
-              className="flex w-full items-center py-2 text-lg font-semibold"
-              prefetch={false}
-            >
-              Browse Recipes
+    <nav className="bg-background border-b">
+      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <div className="flex items-center">
+            <Link href="/" className="flex-shrink-0">
+              <Utensils className="h-8 w-8 text-primary" />
             </Link>
-            <Link
-              href="#"
-              className="flex w-full items-center py-2 text-lg font-semibold"
-              prefetch={false}
-            >
-              Categories
-            </Link>
-            <Link
-              href="#"
-              className="flex w-full items-center py-2 text-lg font-semibold"
-              prefetch={false}
-            >
-              Favorites
-            </Link>
-            <Link
-              href="/upload-recipe"
-              className="flex w-full items-center py-2 text-lg font-semibold"
-              prefetch={false}
-            >
-              Upload Recipe
-            </Link>
-            <div className="border-t pt-4 mt-4">
-              <Link href="#" prefetch={false}>
-                <Button className="w-full mb-2">Sign In</Button>
+            <div className="hidden lg:block ml-10 items-baseline space-x-4">
+              <Link
+                href="/"
+                className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+              >
+                Home
               </Link>
-              <Link href="#" prefetch={false}>
-                <Button variant="outline" className="w-full">
-                  Register
-                </Button>
+              <Link
+                href="/upload-recipe"
+                className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+              >
+                Upload
+              </Link>
+              <Link
+                href="/my-recipes"
+                className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+              >
+                My Recipes
+              </Link>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <a className="hover:cursor-pointer text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium">
+                    Categories
+                  </a>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-screen left-0 mt-2 ">
+                  <div className="grid grid-cols-4 lg:grid-cols-5 gap-4 p-4">
+                    {categories.map((category) => (
+                      <DropdownMenuItem key={category} asChild>
+                        <Link href={`/category/${category.toLowerCase()}`}>
+                          {category}
+                        </Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </div>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <Link
+                href="/browse"
+                className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+              >
+                Browse
               </Link>
             </div>
           </div>
-        </SheetContent>
-      </Sheet>
-      <Link
-        href="#"
-        className="mr-6 hidden lg:flex items-center gap-2"
-        prefetch={false}
-      >
-        <ChefHat className="h-6 w-6" />
-        <span className="font-semibold">Recipe Radar</span>
-      </Link>
-      <nav className="ml-auto hidden lg:flex gap-6">
-        <Link
-          href="#"
-          className="group inline-flex h-9 items-center px-4 text-sm font-medium"
-          prefetch={false}
-        >
-          <p className="cursor-pointer relative inline-block before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full">
-            Browse Recipes
-          </p>
-        </Link>
-        <Link
-          href="#"
-          className="group inline-flex h-9 items-center px-4 text-sm font-medium"
-          prefetch={false}
-        >
-          <p className="cursor-pointer relative inline-block before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full">
-            Categories
-          </p>
-        </Link>
-        <Link
-          href="#"
-          className="group inline-flex h-9 items-center px-4 text-sm font-medium"
-          prefetch={false}
-        >
-          <p className="cursor-pointer relative inline-block before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full">
-            Favorites
-          </p>
-        </Link>
-        <Link
-          href="/upload-recipe"
-          className="group inline-flex h-9 items-center px-4 text-sm font-medium"
-          prefetch={false}
-        >
-          <p className="cursor-pointer relative inline-block before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full">
-            Upload Recipe
-          </p>
-        </Link>
-        <div className="flex items-center gap-2 ml-4">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleDarkMode}
-            className="mr-2"
-          >
-            {isDark ? (
-              <Sun className="h-5 w-5" />
-            ) : (
-              <Moon className="h-5 w-5" />
-            )}
-            <span className="sr-only">Toggle dark mode</span>
-          </Button>
-          <Link href="#" prefetch={false}>
-            <Button variant="outline" size="sm">
-              Sign In
-            </Button>
-          </Link>
-          <Link href="#" prefetch={false}>
-            <Button size="sm">Register</Button>
-          </Link>
+          <div className="hidden lg:block">
+            <div className="ml-4 flex items-center lg:ml-6">
+              <Dialog open={isSearchOpen} onOpenChange={setIsSearchOpen}>
+                <DialogTrigger asChild>
+                  <Button variant="ghost" size="icon">
+                    <Search className="h-4 w-4" />
+                    <span className="sr-only">Search recipes</span>
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px]">
+                  <DialogHeader>
+                    <DialogTitle>Search Recipes</DialogTitle>
+                  </DialogHeader>
+                  <div className="grid gap-4 py-4">
+                    <div className="grid grid-cols-4 items-center gap-4">
+                      <Input
+                        id="search"
+                        placeholder="Search recipes..."
+                        className="col-span-4"
+                      />
+                    </div>
+                  </div>
+                  <Button type="submit">Search</Button>
+                </DialogContent>
+              </Dialog>
+              <Button variant="outline" className="ml-4" size={"sm"}>
+                Sign in
+              </Button>
+              <Button className="ml-4" size={"sm"}>
+                Sign up
+              </Button>
+            </div>
+          </div>
+          <div className="lg:hidden">
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-6 w-6" />
+                  <span className="sr-only">Open menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+                <nav className="flex flex-col gap-4">
+                  <Link
+                    href="/"
+                    className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Home
+                  </Link>
+                  <Link
+                    href="/upload-recipe"
+                    className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Upload
+                  </Link>
+                  <Link
+                    href="/my-recipes"
+                    className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    My Recipes
+                  </Link>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <a className="hover:cursor-pointer text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium">
+                        Categories
+                      </a>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="w-full">
+                      {categories.map((category) => (
+                        <DropdownMenuItem key={category} asChild>
+                          <Link
+                            href={`/category/${category.toLowerCase()}`}
+                            onClick={() => setIsOpen(false)}
+                          >
+                            {category}
+                          </Link>
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                  <Link
+                    href="/browse"
+                    className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Browse
+                  </Link>
+                  <Button
+                    variant="ghost"
+                    className="justify-start px-3 py-2 text-sm font-medium"
+                    onClick={() => {
+                      setIsOpen(false);
+                      setIsSearchOpen(true);
+                    }}
+                  >
+                    <Search className="h-5 w-5 mr-2" />
+                    Search
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="justify-start"
+                    onClick={() => setIsOpen(false)}
+                    size={"sm"}
+                  >
+                    Sign in
+                  </Button>
+                  <Button
+                    className="justify-start"
+                    onClick={() => setIsOpen(false)}
+                    size={"sm"}
+                  >
+                    Sign up
+                  </Button>
+                </nav>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
-      </nav>
-    </header>
-  );
-}
-
-function MenuIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <line x1="4" x2="20" y1="12" y2="12" />
-      <line x1="4" x2="20" y1="6" y2="6" />
-      <line x1="4" x2="20" y1="18" y2="18" />
-    </svg>
+      </div>
+    </nav>
   );
 }

@@ -14,7 +14,7 @@ register();
 export default function Home() {
   return (
     <>
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-16 mt-0 sm:mt-12">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-16 mt-0 sm:mt-12 mb-24 ">
         {/* Featured Recipes Intro Section */}
         <section className="mt-8 sm:mt-12 mb-6 sm:mb-8">
           <h2 className="text-2xl font-semibold tracking-tight">

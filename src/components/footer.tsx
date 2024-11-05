@@ -4,8 +4,8 @@ import { Separator } from "@/components/ui/separator";
 
 export default function Footer() {
   return (
-    <footer className="bg-muted text-foreground mt-24">
-      <div className="container mx-auto px-4 py-10">
+    <footer className="bg-muted text-foreground">
+      <div className="container mx-auto px-4 py-10 max-w-[1300px]">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           <div>
             <h3 className="mb-4 text-lg font-semibold ">About Us</h3>
@@ -95,7 +95,7 @@ export default function Footer() {
         <Separator className="my-8" />
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <p className="text-sm text-muted-foreground">
-            © 2024 Recept Radar. All rights reserved.
+            © 2024 Recept. All rights reserved.
           </p>
           <div className="flex space-x-4">
             <a
