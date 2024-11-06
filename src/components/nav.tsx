@@ -41,12 +41,13 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <nav className="border-b">
+    <nav className="border-b ">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0">
+          <Link href="/" className="flex-shrink-0 flex gap-2">
             <Utensils />
+            <h1>Recept Radar</h1>
           </Link>
 
           {/* Desktop Navigation Links */}
@@ -116,68 +117,72 @@ export default function Navbar() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-                <nav className="flex flex-col gap-4">
-                  <Link
-                    href="/"
-                    className="px-3 py-2 rounded-md text-sm font-medium"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Home
-                  </Link>
-                  <Link
-                    href="/upload-recipe"
-                    className="px-3 py-2 rounded-md text-sm font-medium"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Upload
-                  </Link>
-                  <Link
-                    href="/my-recipes"
-                    className="px-3 py-2 rounded-md text-sm font-medium"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    My Recipes
-                  </Link>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <a className="hover:cursor-pointer px-3 py-2 rounded-md text-sm font-medium">
-                        Categories
-                      </a>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-full">
-                      {categories.map((category) => (
-                        <DropdownMenuItem key={category} asChild>
-                          <Link
-                            href={`/category/${category.toLowerCase()}`}
-                            onClick={() => setIsOpen(false)}
-                          >
-                            {category}
-                          </Link>
-                        </DropdownMenuItem>
-                      ))}
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                  <Link
-                    href="/browse"
-                    className="px-3 py-2 rounded-md text-sm font-medium"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Browse
-                  </Link>
-                  <Button
-                    variant="outline"
-                    className="justify-start"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Sign in
-                  </Button>
-                  <Button
-                    className="justify-start"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Get Started
-                  </Button>
-                </nav>
+                <div className="flex flex-col h-full justify-between">
+                  <nav className="flex flex-col gap-4">
+                    <Link
+                      href="/"
+                      className="px-3 py-2 rounded-md text-sm font-medium"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Home
+                    </Link>
+                    <Link
+                      href="/upload-recipe"
+                      className="px-3 py-2 rounded-md text-sm font-medium"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Upload
+                    </Link>
+                    <Link
+                      href="/my-recipes"
+                      className="px-3 py-2 rounded-md text-sm font-medium"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      My Recipes
+                    </Link>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <a className="hover:cursor-pointer px-3 py-2 rounded-md text-sm font-medium">
+                          Categories
+                        </a>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-full">
+                        {categories.map((category) => (
+                          <DropdownMenuItem key={category} asChild>
+                            <Link
+                              href={`/category/${category.toLowerCase()}`}
+                              onClick={() => setIsOpen(false)}
+                            >
+                              {category}
+                            </Link>
+                          </DropdownMenuItem>
+                        ))}
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                    <Link
+                      href="/browse"
+                      className="px-3 py-2 rounded-md text-sm font-medium"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Browse
+                    </Link>
+                  </nav>
+                  <div className="flex flex-col gap-4">
+                    <Button
+                      variant="outline"
+                      className="justify-start"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Sign in
+                    </Button>
+                    <Button
+                      className="justify-start"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Get Started
+                    </Button>
+                  </div>
+                </div>
               </SheetContent>
             </Sheet>
           </div>

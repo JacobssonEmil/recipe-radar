@@ -27,6 +27,7 @@ export default function Home() {
         <FeaturedCarousel />
 
         {/* Browse by Category Intro Section */}
+        {/*// TODO: Replace with search section as category selection will be handled in navbar */}
         <section className="mt-16 sm:mt-24 mb-6 sm:mb-8">
           <h2 className="text-2xl font-semibold tracking-tight">
             Browse by Category
