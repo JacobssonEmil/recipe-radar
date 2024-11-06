@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Utensils, Menu } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -39,59 +40,102 @@ const categories = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
+  const pathname = usePathname();
+
+  // Helper function to determine if a link is active
+  const isActiveLink = (href: string) => {
+    if (href === "/") {
+      return pathname === "/";
+    } else if (href.startsWith("/category/")) {
+      return pathname.startsWith("/category/");
+    } else {
+      return pathname === href;
+    }
+  };
 
   return (
-    <nav className="border-b ">
-      <div className="mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="dark bg-primary-foreground text-secondary-foreground">
+      <div className="mx-auto px-4 sm:px-6 lg:px-12">
         <div className="relative flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0 flex gap-2">
-            <Utensils />
-            <h1>Recept Radar</h1>
+            <Utensils size={20} className="mt-0.5" />
+            <h1 className="font-semibold">Recept Radar</h1>
           </Link>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden lg:block lg:absolute lg:inset-0 lg:flex lg:items-center lg:justify-center">
+          <div className="hidden lg:block lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:flex lg:items-center lg:justify-center">
             <div className="flex items-baseline space-x-4">
               <Link
                 href="/"
-                className="px-3 py-2 rounded-md text-sm font-medium"
+                className={`py-2 text-sm font-medium whitespace-nowrap hover:text-primary ${
+                  isActiveLink("/") ? "text-primary" : "text-muted-foreground"
+                }`}
               >
                 Home
               </Link>
               <Link
                 href="/upload-recipe"
-                className="px-3 py-2 rounded-md text-sm font-medium"
+                className={`px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap truncate hover:text-primary ${
+                  isActiveLink("/upload-recipe")
+                    ? "text-primary"
+                    : "text-muted-foreground"
+                }`}
               >
-                Upload
-              </Link>
-              <Link
-                href="/my-recipes"
-                className="px-3 py-2 rounded-md text-sm font-medium"
-              >
-                My Recipes
+                Upload a Recipe
               </Link>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <a className="hover:cursor-pointer px-3 py-2 rounded-md text-sm font-medium">
+                  <a
+                    className={`hover:cursor-pointer px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap truncate hover:text-primary ${
+                      pathname.startsWith("/category/")
+                        ? "text-primary"
+                        : "text-muted-foreground"
+                    }`}
+                  >
                     Categories
                   </a>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-screen left-0 mt-2">
                   <div className="grid grid-cols-4 lg:grid-cols-5 gap-4 p-4">
-                    {categories.map((category) => (
-                      <DropdownMenuItem key={category} asChild>
-                        <Link href={`/category/${category.toLowerCase()}`}>
-                          {category}
-                        </Link>
-                      </DropdownMenuItem>
-                    ))}
+                    {categories.map((category) => {
+                      const categoryHref = `/category/${category.toLowerCase()}`;
+                      const isActive = pathname === categoryHref;
+                      return (
+                        <DropdownMenuItem key={category} asChild>
+                          <Link
+                            href={categoryHref}
+                            className={`${
+                              isActive
+                                ? "text-primary"
+                                : "text-muted-foreground"
+                            }`}
+                          >
+                            {category}
+                          </Link>
+                        </DropdownMenuItem>
+                      );
+                    })}
                   </div>
                 </DropdownMenuContent>
               </DropdownMenu>
               <Link
+                href="/my-recipes"
+                className={`px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap truncate hover:text-primary ${
+                  isActiveLink("/my-recipes")
+                    ? "text-primary"
+                    : "text-muted-foreground"
+                }`}
+              >
+                My Recipes
+              </Link>
+              <Link
                 href="/browse"
-                className="px-3 py-2 rounded-md text-sm font-medium"
+                className={`px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap truncate hover:text-primary ${
+                  isActiveLink("/browse")
+                    ? "text-primary"
+                    : "text-muted-foreground"
+                }`}
               >
                 Browse
               </Link>
@@ -121,47 +165,78 @@ export default function Navbar() {
                   <nav className="flex flex-col gap-4">
                     <Link
                       href="/"
-                      className="px-3 py-2 rounded-md text-sm font-medium"
+                      className={`px-3 py-2 rounded-md text-sm font-medium ${
+                        isActiveLink("/")
+                          ? "text-primary"
+                          : "text-muted-foreground"
+                      }`}
                       onClick={() => setIsOpen(false)}
                     >
                       Home
                     </Link>
                     <Link
                       href="/upload-recipe"
-                      className="px-3 py-2 rounded-md text-sm font-medium"
+                      className={`px-3 py-2 rounded-md text-sm font-medium ${
+                        isActiveLink("/upload-recipe")
+                          ? "text-primary"
+                          : "text-muted-foreground"
+                      }`}
                       onClick={() => setIsOpen(false)}
                     >
                       Upload
                     </Link>
                     <Link
                       href="/my-recipes"
-                      className="px-3 py-2 rounded-md text-sm font-medium"
+                      className={`px-3 py-2 rounded-md text-sm font-medium ${
+                        isActiveLink("/my-recipes")
+                          ? "text-primary"
+                          : "text-muted-foreground"
+                      }`}
                       onClick={() => setIsOpen(false)}
                     >
                       My Recipes
                     </Link>
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <a className="hover:cursor-pointer px-3 py-2 rounded-md text-sm font-medium">
+                        <a
+                          className={`hover:cursor-pointer px-3 py-2 rounded-md text-sm font-medium ${
+                            pathname.startsWith("/category/")
+                              ? "text-primary"
+                              : "text-muted-foreground"
+                          }`}
+                        >
                           Categories
                         </a>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent className="w-full">
-                        {categories.map((category) => (
-                          <DropdownMenuItem key={category} asChild>
-                            <Link
-                              href={`/category/${category.toLowerCase()}`}
-                              onClick={() => setIsOpen(false)}
-                            >
-                              {category}
-                            </Link>
-                          </DropdownMenuItem>
-                        ))}
+                        {categories.map((category) => {
+                          const categoryHref = `/category/${category.toLowerCase()}`;
+                          const isActive = pathname === categoryHref;
+                          return (
+                            <DropdownMenuItem key={category} asChild>
+                              <Link
+                                href={categoryHref}
+                                className={`${
+                                  isActive
+                                    ? "text-primary"
+                                    : "text-muted-foreground"
+                                }`}
+                                onClick={() => setIsOpen(false)}
+                              >
+                                {category}
+                              </Link>
+                            </DropdownMenuItem>
+                          );
+                        })}
                       </DropdownMenuContent>
                     </DropdownMenu>
                     <Link
                       href="/browse"
-                      className="px-3 py-2 rounded-md text-sm font-medium"
+                      className={`px-3 py-2 rounded-md text-sm font-medium ${
+                        isActiveLink("/browse")
+                          ? "text-primary"
+                          : "text-muted-foreground"
+                      }`}
                       onClick={() => setIsOpen(false)}
                     >
                       Browse
