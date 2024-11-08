@@ -59,8 +59,9 @@ export default function Navbar() {
         <div className="relative flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0 flex gap-2">
-            <Utensils size={20} className="mt-0.5" />
-            <h1 className="font-semibold">Recept Radar</h1>
+            <h1 className="font-semibold">
+              Recept <span className="text-green-600">Radar</span>
+            </h1>
           </Link>
 
           {/* Desktop Navigation Links */}
@@ -68,7 +69,7 @@ export default function Navbar() {
             <div className="flex items-baseline space-x-4">
               <Link
                 href="/"
-                className={`py-2 text-sm font-medium whitespace-nowrap hover:text-primary ${
+                className={`py-2 text-sm font-semibold whitespace-nowrap hover:text-primary ${
                   isActiveLink("/") ? "text-primary" : "text-muted-foreground"
                 }`}
               >
@@ -76,7 +77,7 @@ export default function Navbar() {
               </Link>
               <Link
                 href="/upload-recipe"
-                className={`px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap truncate hover:text-primary ${
+                className={`px-3 py-2 rounded-md text-sm font-semibold whitespace-nowrap truncate hover:text-primary ${
                   isActiveLink("/upload-recipe")
                     ? "text-primary"
                     : "text-muted-foreground"
@@ -87,7 +88,7 @@ export default function Navbar() {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <a
-                    className={`hover:cursor-pointer px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap truncate hover:text-primary ${
+                    className={`hover:cursor-pointer px-3 py-2 rounded-md text-sm font-semibold whitespace-nowrap truncate hover:text-primary ${
                       pathname.startsWith("/category/")
                         ? "text-primary"
                         : "text-muted-foreground"
@@ -121,7 +122,7 @@ export default function Navbar() {
               </DropdownMenu>
               <Link
                 href="/my-recipes"
-                className={`px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap truncate hover:text-primary ${
+                className={`px-3 py-2 rounded-md text-sm font-semibold whitespace-nowrap truncate hover:text-primary ${
                   isActiveLink("/my-recipes")
                     ? "text-primary"
                     : "text-muted-foreground"
@@ -131,7 +132,7 @@ export default function Navbar() {
               </Link>
               <Link
                 href="/browse"
-                className={`px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap truncate hover:text-primary ${
+                className={`px-3 py-2 rounded-md text-sm font-semibold whitespace-nowrap truncate hover:text-primary ${
                   isActiveLink("/browse")
                     ? "text-primary"
                     : "text-muted-foreground"

@@ -33,7 +33,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <head>
-          {/* //! MIGHT CAUSE ISSUES WITH SIPER */}
+          {/* //! MIGHT CAUSE ISSUES WITH SWIPER */}
           <Script
             src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"
             strategy="lazyOnload"
