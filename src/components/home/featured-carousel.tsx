@@ -49,7 +49,7 @@ export default function FeaturedCarousel() {
             delay: 6000,
           }),
         ]}
-        className="hidden sm:block"
+        className=""
       >
         <CarouselContent>
           {recipes.map((recipe) => (
