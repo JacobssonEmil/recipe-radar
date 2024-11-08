@@ -6,11 +6,10 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Badge } from "../ui/badge";
-import { FaFireAlt } from "react-icons/fa";
 import { Clock, Utensils } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import Link from "next/link";
 import Autoplay from "embla-carousel-autoplay";
+import Image from "next/image";
 
 const recipes = [
   {
@@ -56,10 +55,13 @@ export default function FeaturedCarousel() {
           {recipes.map((recipe) => (
             <CarouselItem key={recipe.id}>
               <div className="relative h-[400px] rounded-lg overflow-hidden">
-                <img
+                <Image
                   src={recipe.image}
                   alt={recipe.title}
-                  className="w-full h-full object-cover"
+                  layout="fill"
+                  objectFit="cover"
+                  quality={80}
+                  className="w-full h-full"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent" />
                 <div className="absolute bottom-0 left-0 p-6 text-white">
