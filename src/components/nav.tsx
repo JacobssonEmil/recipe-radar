@@ -54,7 +54,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="dark bg-primary-foreground text-secondary-foreground">
+    <nav className="">
       <div className="mx-auto px-4 sm:px-6 lg:px-12">
         <div className="relative flex items-center justify-between h-16">
           {/* Logo */}
