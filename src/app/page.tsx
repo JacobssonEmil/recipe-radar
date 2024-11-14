@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 
 import { ChefHat, Search, Utensils, Heart } from "lucide-react";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -95,33 +96,27 @@ export default function Home() {
             {[
               {
                 name: "Breakfast",
-                image:
-                  "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=400&auto=format&fit=crop&q=60",
+                image: "/breakfast.jpg",
               },
               {
                 name: "Lunch",
-                image:
-                  "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&auto=format&fit=crop&q=60",
+                image: "/lunch.jpg",
               },
               {
                 name: "Dinner",
-                image:
-                  "https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=400&auto=format&fit=crop&q=60",
+                image: "/dinner.jpg",
               },
               {
                 name: "Desserts",
-                image:
-                  "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&auto=format&fit=crop&q=60",
+                image: "/dessert.jpg",
               },
               {
                 name: "Vegetarian",
-                image:
-                  "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&auto=format&fit=crop&q=60",
+                image: "/vegetarian.jpg",
               },
               {
                 name: "Quick & Easy",
-                image:
-                  "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=400&auto=format&fit=crop&q=60",
+                image: "/quick-and-easy.jpg",
               },
             ].map((category) => (
               <div
@@ -129,10 +124,13 @@ export default function Home() {
                 className="relative group cursor-pointer overflow-hidden rounded-lg aspect-square"
               >
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors z-10" />
-                <img
+
+                <Image
                   src={category.image}
                   alt={category.name}
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  layout="fill"
+                  objectFit="cover"
+                  className="group-hover:scale-110 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 flex items-center justify-center z-20">
                   <h3 className="text-white font-semibold text-lg">
@@ -156,24 +154,21 @@ export default function Home() {
             {[
               {
                 title: "Classic Eggs Benedict",
-                image:
-                  "https://images.unsplash.com/photo-1608039829572-78524f79c4c7?w=800&auto=format&fit=crop&q=60",
+                image: "/recipe1.jpg",
                 author: "Chef Maria",
                 time: "30 mins",
                 difficulty: "Medium",
               },
               {
                 title: "Mediterranean Quinoa Bowl",
-                image:
-                  "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&auto=format&fit=crop&q=60",
+                image: "/recipe6.jpg",
                 author: "Chef Alex",
                 time: "20 mins",
                 difficulty: "Easy",
               },
               {
                 title: "Grilled Salmon",
-                image:
-                  "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&auto=format&fit=crop&q=60",
+                image: "/recipe4.jpg",
                 author: "Chef John",
                 time: "25 mins",
                 difficulty: "Medium",
@@ -181,9 +176,10 @@ export default function Home() {
             ].map((recipe) => (
               <div key={recipe.title} className="group cursor-pointer">
                 <div className="relative aspect-[4/3] rounded-lg overflow-hidden mb-4">
-                  <img
+                  <Image
                     src={recipe.image}
                     alt={recipe.title}
+                    layout="fill"
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                 </div>
