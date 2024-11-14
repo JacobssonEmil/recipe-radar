@@ -4,7 +4,6 @@ import React from "react";
 import { register } from "swiper/element/bundle";
 import CategorySelector from "@/components/home/category-selector";
 import NewsletterSignup from "@/components/newsletter-signup";
-import CardsSwiper from "@/components/home/cards-swiper";
 
 register();
 

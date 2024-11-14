@@ -1,7 +1,4 @@
-// components/RecipeCard.tsx
 "use client";
-
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Heart, Clock, Utensils } from "lucide-react";
