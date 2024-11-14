@@ -12,8 +12,8 @@ export default function Home() {
   return (
     <>
       {/* Featured Recipes Section */}
-      <div className="w-full  py-12">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-16">
+      <div className="w-full py-12">
+        <div className="max-w-[1400px] mx-auto px-4 ">
           <section className="mb-6 sm:mb-8">
             <h2 className="text-2xl font-semibold tracking-tight">
               Featured Recipes
@@ -26,7 +26,7 @@ export default function Home() {
 
       {/* Browse by Category Section */}
       <div className="w-full  py-12">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-16">
+        <div className="max-w-[1400px] mx-auto px-4">
           <section className="mb-6 sm:mb-8">
             <h2 className="text-2xl font-semibold tracking-tight">
               Browse by Category
@@ -37,22 +37,9 @@ export default function Home() {
         </div>
       </div>
 
-      {/* October Recipes Section */}
-      <div className="w-full  py-12">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-16">
-          <section className="mb-6 sm:mb-8">
-            <h2 className="text-2xl font-semibold tracking-tight">
-              October Recipes
-            </h2>
-            <div className="mt-2 w-16 h-1 bg-gradient-to-r from-green-400 via-green-600 to-green-400 rounded-full"></div>
-          </section>
-          <CardsSwiper category={"Popular Recipes"} />
-        </div>
-      </div>
-
       {/* Newsletter Signup Section */}
       <div className="w-full py-12">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-16">
+        <div className="max-w-[1400px] mx-auto px-4 ">
           <section className="mb-6 sm:mb-8">
             <h2 className="text-2xl font-semibold tracking-tight">
               Get Weekly Recipe Inspiration

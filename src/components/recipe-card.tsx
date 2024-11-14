@@ -1,65 +1,97 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Clock, Heart, Star } from "lucide-react";
-import { Badge } from "./ui/badge";
-import Link from "next/link";
-import Image from "next/image";
+// components/RecipeCard.tsx
+"use client";
 
-type Recipe = {
-  name: string;
-  image: string;
-  likes: number;
-  rating: number;
-  description: string;
-  cookingTime: string;
-  calories: number;
-};
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Heart, Clock, Utensils } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 interface RecipeCardProps {
-  recipe: Recipe;
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  cookTime: string;
+  category: string;
+  author: string;
+  difficulty: string;
+  calories: number;
+  isFavorite: boolean;
+  onToggleFavorite: (id: number) => void;
 }
 
-export default function RecipeCard({ recipe }: RecipeCardProps) {
+export function RecipeCard({
+  id,
+  title,
+  description,
+  image,
+  cookTime,
+  category,
+  author,
+  difficulty,
+  calories,
+  isFavorite,
+  onToggleFavorite,
+}: RecipeCardProps) {
   return (
-    <Card key={recipe.name} className="overflow-hidden  max-w-80 mb-10">
-      <Link href={`/recipes/${recipe.name.toLowerCase().replace(/\s+/g, "-")}`}>
-        <div className="relative w-full h-40">
-          <Image
-            src={recipe.image}
-            alt={recipe.name}
-            layout="fill"
-            objectFit="cover"
-            className="rounded-t-lg transition-transform duration-300 hover:scale-105"
-          />
-          {/* Bottom left badge */}
-          <Badge className="absolute bottom-2 left-2 bg-background text-foreground hover:bg-background hover:text-foreground">
-            <Clock className="w-4 h-4 mr-1" />
-            {recipe.cookingTime}
-          </Badge>
-          {/* Bottom right badge */}
-          <Badge className="absolute bottom-2 right-2 bg-background text-foreground hover:bg-background hover:text-foreground">
-            {recipe.calories} cal
-          </Badge>
+    <Card key={id} className="overflow-hidden">
+      <div className="relative h-48">
+        <Image src={image} alt={title} fill className="object-cover" />
+      </div>
+      <CardHeader>
+        <div className="flex justify-between items-start">
+          <div>
+            <CardTitle className="text-xl">{title}</CardTitle>
+            <CardDescription>{description}</CardDescription>
+          </div>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => onToggleFavorite(id)}
+          >
+            <Heart
+              className={`h-5 w-5 ${
+                isFavorite ? "fill-current text-red-500" : ""
+              }`}
+            />
+          </Button>
         </div>
-      </Link>
-      <CardContent className="p-4">
-        <Link
-          href={`/recipes/${recipe.name.toLowerCase().replace(/\s+/g, "-")}`}
-        >
-          <h4 className="font-semibold text-xl">{recipe.name}</h4>
-        </Link>
-        <p className="text-sm line-clamp-1 my-2">{recipe.description}</p>
-
-        <div className="flex justify-between items-center">
-          <div className="flex items-center">
-            <Star className="w-4 h-4 text-yellow-400 mr-1" />
-            <span>{recipe.rating.toFixed(1)}</span>
+      </CardHeader>
+      <CardContent>
+        <div className="flex items-center gap-4 text-sm text-muted-foreground">
+          <div className="flex items-center gap-1">
+            <Clock className="h-4 w-4" />
+            <span>{cookTime}</span>
           </div>
-          <div className="flex items-center">
-            <Heart className="w-4 h-4 text-red-500 mr-1" />
-            <span>{recipe.likes}</span>
+          <div className="flex items-center gap-1">
+            <Utensils className="h-4 w-4" />
+            <span>{category}</span>
           </div>
+        </div>
+        <div className="mt-2 flex gap-2">
+          <span className="text-sm bg-primary/10 text-primary px-2 py-1 rounded">
+            {difficulty}
+          </span>
+          <span className="text-sm bg-primary/10 text-primary px-2 py-1 rounded">
+            {calories} kcal
+          </span>
         </div>
       </CardContent>
+      <CardFooter className="flex justify-between items-center">
+        <span className="text-sm text-muted-foreground">by {author}</span>
+        <Button variant="outline" asChild>
+          <Link href={`/recipes/${id}`}>View Recipe</Link>
+        </Button>
+      </CardFooter>
     </Card>
   );
 }
