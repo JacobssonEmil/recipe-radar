@@ -7,6 +7,7 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+import { ModeToggle } from "./ui/toggle-mode";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -22,8 +23,12 @@ export default function Footer() {
         "You’re all set! Get ready for delicious recipes, cooking tips, and kitchen inspiration delivered right to your inbox.",
     });
   };
+
   return (
     <footer className="bg-muted/50">
+      <div className="absolute mt-2 mr-4 end-0">
+        <ModeToggle />
+      </div>
       <div className="container mx-auto px-4 py-20">
         {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
@@ -147,7 +152,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Recept Radar. All rights reserved.
           </div>
 
-          {/* Social Links */}
+          {/* Social Links and ModeToggle */}
           <div className="flex items-center gap-4">
             <Button variant="ghost" size="icon" className="hover:text-primary">
               <Facebook className="h-5 w-5" />
@@ -161,6 +166,9 @@ export default function Footer() {
             <Button variant="ghost" size="icon" className="hover:text-primary">
               <Youtube className="h-5 w-5" />
             </Button>
+
+            {/* Mode Toggle */}
+            <ModeToggle />
           </div>
         </div>
       </div>
