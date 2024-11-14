@@ -198,14 +198,19 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary text-primary-foreground">
+      <section className="py-20 bg-primary text-primary-foreground dark:bg-secondary dark:text-secondary-foreground px-4">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Start Cooking?</h2>
           <p className="text-lg mb-8 max-w-2xl mx-auto opacity-90">
             Join thousands of food enthusiasts who are already sharing and
             discovering amazing recipes.
           </p>
-          <Button size="lg" variant="secondary">
+
+          <Button
+            size="lg"
+            variant="default"
+            className="bg-white text-black hover:bg-gray-100"
+          >
             Create Account
           </Button>
         </div>
