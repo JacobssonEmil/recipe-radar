@@ -177,27 +177,17 @@ export default function Navbar() {
                       Home
                     </Link>
                     <Link
-                      href="/upload-recipe"
+                      href="/recipes"
                       className={`px-3 py-2 rounded-md text-sm font-medium ${
-                        isActiveLink("/upload-recipe")
+                        isActiveLink("/Recipes")
                           ? "text-primary"
                           : "text-muted-foreground"
                       }`}
                       onClick={() => setIsOpen(false)}
                     >
-                      Upload
+                      Recipes
                     </Link>
-                    <Link
-                      href="/my-recipes"
-                      className={`px-3 py-2 rounded-md text-sm font-medium ${
-                        isActiveLink("/my-recipes")
-                          ? "text-primary"
-                          : "text-muted-foreground"
-                      }`}
-                      onClick={() => setIsOpen(false)}
-                    >
-                      My Recipes
-                    </Link>
+
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
                         <a
@@ -233,15 +223,26 @@ export default function Navbar() {
                       </DropdownMenuContent>
                     </DropdownMenu>
                     <Link
-                      href="/browse"
+                      href="/upload-recipe"
                       className={`px-3 py-2 rounded-md text-sm font-medium ${
-                        isActiveLink("/browse")
+                        isActiveLink("/upload-recipe")
                           ? "text-primary"
                           : "text-muted-foreground"
                       }`}
                       onClick={() => setIsOpen(false)}
                     >
-                      Browse
+                      Upload a Recipe
+                    </Link>
+                    <Link
+                      href="/my-recipes"
+                      className={`px-3 py-2 rounded-md text-sm font-medium ${
+                        isActiveLink("/my-recipes")
+                          ? "text-primary"
+                          : "text-muted-foreground"
+                      }`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      My Recipes
                     </Link>
                   </nav>
                   <div className="flex flex-col gap-4">
