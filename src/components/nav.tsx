@@ -122,9 +122,9 @@ export default function Navbar() {
                 </DropdownMenuContent>
               </DropdownMenu>
               <Link
-                href="/upload-recipe"
+                href="/upload"
                 className={`px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap truncate hover:text-primary ${
-                  isActiveLink("/upload-recipe")
+                  isActiveLink("/upload")
                     ? "text-primary"
                     : "text-muted-foreground"
                 }`}
@@ -223,9 +223,9 @@ export default function Navbar() {
                       </DropdownMenuContent>
                     </DropdownMenu>
                     <Link
-                      href="/upload-recipe"
+                      href="/upload"
                       className={`px-3 py-2 rounded-md text-sm font-medium ${
-                        isActiveLink("/upload-recipe")
+                        isActiveLink("/upload")
                           ? "text-primary"
                           : "text-muted-foreground"
                       }`}

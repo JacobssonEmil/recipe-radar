@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { ChefHat, Search, Utensils, Heart } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 px-4">
+      <section className="relative py-40 px-4">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=1600&auto=format&fit=crop&q=80')] bg-cover bg-center">
           <div className="absolute inset-0 bg-black/60" />
         </div>
@@ -15,17 +16,27 @@ export default function Home() {
           <h1 className="text-4xl sm:text-5xl font-bold mb-6 leading-tight">
             Discover & Share <br /> Delicious Recipes
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl mb-8 max-w-2xl mx-auto text-gray-200">
+          <p className="text-lg sm:text-xl md:text-xl mb-8 max-w-2xl mx-auto text-gray-200">
             Join our community of food enthusiasts. Browse thousands of recipes,
             share your culinary creations, and find your next favorite dish.
           </p>
           <div className="hidden sm:flex gap-4 justify-center">
-            <Button size="lg" className="bg-white text-black hover:bg-gray-100">
-              Browse Recipes
-            </Button>
-            <Button size="lg" className="bg-white text-black hover:bg-gray-100">
-              Share Recipe
-            </Button>
+            <Link href={"/recipes"}>
+              <Button
+                size="lg"
+                className="bg-white text-black hover:bg-gray-100"
+              >
+                Browse Recipes
+              </Button>
+            </Link>
+            <Link href={"/upload"}>
+              <Button
+                size="lg"
+                className="bg-white text-black hover:bg-gray-100"
+              >
+                Share Recipe
+              </Button>
+            </Link>
           </div>
 
           <div className="flex sm:hidden gap-4 justify-center">
@@ -134,7 +145,10 @@ export default function Home() {
         <div className="container mx-auto">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-2xl sm:text-3xl font-bold">Featured Recipes</h2>
-            <Button variant="outline">View All Recipes</Button>
+            <Link href={"/recipes"}>
+              {" "}
+              <Button variant="outline">View All Recipes</Button>
+            </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
@@ -195,14 +209,15 @@ export default function Home() {
             Join thousands of food enthusiasts who are already sharing and
             discovering amazing recipes.
           </p>
-
-          <Button
-            size="lg"
-            variant="default"
-            className="bg-white text-black hover:bg-gray-100"
-          >
-            Create Account
-          </Button>
+          <Link href={"/sign-up"}>
+            <Button
+              size="lg"
+              variant="default"
+              className="bg-white text-black hover:bg-gray-100"
+            >
+              Create Account
+            </Button>
+          </Link>
         </div>
       </section>
     </div>
