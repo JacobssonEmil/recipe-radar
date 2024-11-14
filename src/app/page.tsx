@@ -40,12 +40,22 @@ export default function Home() {
           </div>
 
           <div className="flex sm:hidden gap-4 justify-center">
-            <Button size="sm" className="bg-white text-black hover:bg-gray-100">
-              Browse Recipes
-            </Button>
-            <Button size="sm" className="bg-white text-black hover:bg-gray-100">
-              Share Recipe
-            </Button>
+            <Link href={"/recipes"}>
+              <Button
+                size="sm"
+                className="bg-white text-black hover:bg-gray-100"
+              >
+                Browse Recipes
+              </Button>
+            </Link>
+            <Link href={"/upload"}>
+              <Button
+                size="sm"
+                className="bg-white text-black hover:bg-gray-100"
+              >
+                Share Recipe
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
