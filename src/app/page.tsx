@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-40 px-4">
+      <section className="relative py-52 px-4">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=1600&auto=format&fit=crop&q=80')] bg-cover bg-center">
           <div className="absolute inset-0 bg-black/60" />
         </div>
