@@ -1,5 +1,5 @@
-import React from "react";
-import RecipeCard from "../recipe-card";
+import React, { useState } from "react";
+import { RecipeCard } from "../recipe-card";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
@@ -19,151 +19,116 @@ interface Recipe {
   category: string;
 }
 
-interface CardsSwiperProps {
-  category: string;
-}
+export default function CardsSwiper() {
+  const [favorites, setFavorites] = useState<number[]>([]);
 
-export default function CardsSwiper({ category }: CardsSwiperProps) {
+  const toggleFavorite = (id: number) => {
+    setFavorites((prev) =>
+      prev.includes(id) ? prev.filter((favId) => favId !== id) : [...prev, id]
+    );
+  };
   // TODO: Replace with API call
-  const recipes: Recipe[] = [
+  const recipes = [
     {
-      id: "1",
-      name: "Baked Ravioli Casserole",
+      id: 1,
+      title: "Classic Eggs Benedict",
+      description: "Perfect brunch recipe with hollandaise sauce",
       image: "/recipe1.jpg",
-      likes: 1234,
-      rating: 4.5,
-      description: "Delicious baked ravioli with a creamy sauce.",
-      cookingTime: "45 min",
+      cookTime: "30 mins",
+      category: "Breakfast",
+      author: "Chef Maria",
+      difficulty: "Medium",
       calories: 450,
-      category: "Popular Recipes",
     },
     {
-      id: "2",
-      name: "Avocado Toast",
+      id: 2,
+      title: "Mediterranean Quinoa Bowl",
+      description: "Healthy and filling vegetarian bowl",
       image: "/recipe2.jpg",
-      likes: 985,
-      rating: 4.8,
-      description: "Creamy avocado on crispy sourdough bread.",
-      cookingTime: "10 min",
-      calories: 280,
-      category: "Quick & Easy Dinner",
+      cookTime: "20 mins",
+      category: "Lunch",
+      author: "Chef Alex",
+      difficulty: "Easy",
+      calories: 380,
     },
     {
-      id: "3",
-      name: "Grilled Chicken Salad",
+      id: 3,
+      title: "Grilled Salmon",
+      description: "With lemon herb butter sauce ",
       image: "/recipe3.jpg",
-      likes: 1120,
-      rating: 4.7,
-      description: "Healthy grilled chicken with fresh salad.",
-      cookingTime: "20 min",
-      calories: 350,
-      category: "Quick & Easy Dinner",
+      cookTime: "25 mins",
+      category: "Dinner",
+      author: "Chef John",
+      difficulty: "Medium",
+      calories: 520,
     },
     {
-      id: "4",
-      name: "Vegetarian Lasagna",
-      image: "/recipe3.jpg",
-      likes: 567,
-      rating: 4.2,
-      description: "Layered lasagna with veggies and cheese.",
-      cookingTime: "60 min",
-      calories: 600,
-      category: "Popular Recipes",
+      id: 4,
+      title: "Vegan Buddha Bowl",
+      description: "Nutritious bowl with roasted vegetables",
+      image: "/recipe4.jpg",
+      cookTime: "25 mins",
+      category: "Lunch",
+      author: "Chef Sarah",
+      difficulty: "Easy",
+      calories: 340,
     },
     {
-      id: "5",
-      name: "Classic Caesar Salad",
-      image: "/recipe1.jpg",
-      likes: 420,
-      rating: 4.6,
-      description: "Crispy romaine with Caesar dressing and croutons.",
-      cookingTime: "15 min",
-      calories: 320,
-      category: "Quick & Easy Dinner",
+      id: 5,
+      title: "Chocolate Lava Cake",
+      description: "Decadent dessert with molten center",
+      image: "/recipe5.jpg",
+      cookTime: "20 mins",
+      category: "Desserts",
+      author: "Chef Michael",
+      difficulty: "Hard",
+      calories: 580,
     },
     {
-      id: "6",
-      name: "Spaghetti Bolognese",
-      image: "/recipe2.jpg",
-      likes: 899,
-      rating: 4.4,
-      description: "Classic Italian pasta with meat sauce.",
-      cookingTime: "30 min",
-      calories: 550,
-      category: "Popular Recipes",
+      id: 6,
+      title: "Asian Stir-Fry Noodles",
+      description: "Quick and flavorful vegetarian noodles",
+      image: "/recipe6.jpg",
+      cookTime: "15 mins",
+      category: "Dinner",
+      author: "Chef Lisa",
+      difficulty: "Easy",
+      calories: 420,
     },
     {
-      id: "7",
-      name: "Quinoa Salad",
-      image: "/recipe2.jpg",
-      likes: 345,
-      rating: 4.1,
-      description: "Healthy quinoa mixed with fresh vegetables.",
-      cookingTime: "25 min",
-      calories: 250,
-      category: "Quick & Easy Dinner",
+      id: 7,
+      title: "Asian Stir-Fry Noodles",
+      description: "Quick and flavorful vegetarian noodles",
+      image: "/recipe6.jpg",
+      cookTime: "15 mins",
+      category: "Dinner",
+      author: "Chef Lisa",
+      difficulty: "Easy",
+      calories: 420,
     },
     {
-      id: "8",
-      name: "Eggplant Parmesan",
-      image: "/recipe1.jpg",
-      likes: 675,
-      rating: 4.3,
-      description: "Baked eggplant with marinara sauce and cheese.",
-      cookingTime: "50 min",
-      calories: 480,
-      category: "Popular Recipes",
+      id: 8,
+      title: "Asian Stir-Fry Noodles",
+      description: "Quick and flavorful vegetarian noodles",
+      image: "/recipe6.jpg",
+      cookTime: "15 mins",
+      category: "Dinner",
+      author: "Chef Lisa",
+      difficulty: "Easy",
+      calories: 420,
     },
     {
-      id: "9",
-      name: "Quinoa Salad",
-      image: "/recipe2.jpg",
-      likes: 345,
-      rating: 4.1,
-      description: "Healthy quinoa mixed with fresh vegetables.",
-      cookingTime: "25 min",
-      calories: 250,
-      category: "Quick & Easy Dinner",
-    },
-    {
-      id: "10",
-      name: "Eggplant Parmesan",
-      image: "/recipe1.jpg",
-      likes: 675,
-      rating: 4.3,
-      description: "Baked eggplant with marinara sauce and cheese.",
-      cookingTime: "50 min",
-      calories: 480,
-      category: "Popular Recipes",
-    },
-    {
-      id: "11",
-      name: "Quinoa Salad",
-      image: "/recipe2.jpg",
-      likes: 345,
-      rating: 4.1,
-      description: "Healthy quinoa mixed with fresh vegetables.",
-      cookingTime: "25 min",
-      calories: 250,
-      category: "Quick & Easy Dinner",
-    },
-    {
-      id: "12",
-      name: "Eggplant Parmesan",
-      image: "/recipe1.jpg",
-      likes: 675,
-      rating: 4.3,
-      description: "Baked eggplant with marinara sauce and cheese.",
-      cookingTime: "50 min",
-      calories: 480,
-      category: "Popular Recipes",
+      id: 9,
+      title: "Asian Stir-Fry Noodles",
+      description: "Quick and flavorful vegetarian noodles",
+      image: "/recipe6.jpg",
+      cookTime: "15 mins",
+      category: "Dinner",
+      author: "Chef Lisa",
+      difficulty: "Easy",
+      calories: 420,
     },
   ];
-
-  // TODO: Replace with API call
-  const filteredRecipes = category
-    ? recipes.filter((recipe) => recipe.category === category)
-    : recipes;
 
   return (
     <>
@@ -177,17 +142,27 @@ export default function CardsSwiper({ category }: CardsSwiperProps) {
           modules={[Pagination]}
           className="mySwiper"
         >
-          {filteredRecipes.map((recipe) => (
+          {recipes.map((recipe) => (
             <SwiperSlide key={recipe.id} style={{ width: "290px" }}>
-              <RecipeCard recipe={recipe} />
+              <RecipeCard
+                key={recipe.id}
+                {...recipe}
+                isFavorite={favorites.includes(recipe.id)}
+                onToggleFavorite={toggleFavorite}
+              />
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
       <div className="hidden 1350px:flex gap-6 justify-between">
-        {filteredRecipes.slice(0, 4).map((recipe) => (
+        {recipes.slice(0, 4).map((recipe) => (
           <SwiperSlide key={recipe.id} style={{ width: "290px" }}>
-            <RecipeCard recipe={recipe} />
+            <RecipeCard
+              key={recipe.id}
+              {...recipe}
+              isFavorite={favorites.includes(recipe.id)}
+              onToggleFavorite={toggleFavorite}
+            />
           </SwiperSlide>
         ))}
       </div>

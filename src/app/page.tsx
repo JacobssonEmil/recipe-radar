@@ -4,6 +4,7 @@ import React from "react";
 import { register } from "swiper/element/bundle";
 import CategorySelector from "@/components/home/category-selector";
 import NewsletterSignup from "@/components/newsletter-signup";
+import CardsSwiper from "@/components/home/cards-swiper";
 
 register();
 
@@ -33,6 +34,19 @@ export default function Home() {
             <div className="mt-2 w-16 h-1 bg-gradient-to-r from-green-400 via-green-600 to-green-400 rounded-full"></div>
           </section>
           <CategorySelector />
+        </div>
+      </div>
+
+      {/* October Recipes Section */}
+      <div className="w-full  py-12">
+        <div className="max-w-[1400px] mx-auto px-4 ">
+          <section className="mb-6 sm:mb-8">
+            <h2 className="text-2xl font-semibold tracking-tight">
+              October Recipes
+            </h2>
+            <div className="mt-2 w-16 h-1 bg-gradient-to-r from-green-400 via-green-600 to-green-400 rounded-full"></div>
+          </section>
+          <CardsSwiper />
         </div>
       </div>
 
