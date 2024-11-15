@@ -1,9 +1,8 @@
 "use client";
 
-import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LogIn, Menu, Play, UserPlus } from "lucide-react";
+import { LogIn, Menu, UserPlus } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -14,8 +13,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-
-import { ModeToggle } from "./ui/toggle-mode";
 
 const categories = [
   "Breakfast",
@@ -40,7 +37,9 @@ const categories = [
 ];
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const pathname = usePathname();
 
   const isActiveLink = (href: string) => {
@@ -48,6 +47,24 @@ export default function Navbar() {
     if (href.startsWith("/category/")) return pathname.startsWith("/category/");
     return pathname === href;
   };
+
+  // Scroll behavior for hiding/showing navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY) {
+        setShowNavbar(false);
+      } else {
+        setShowNavbar(true);
+      }
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
 
   return (
     <>
@@ -168,9 +185,9 @@ export default function Navbar() {
 
       {/* Mobile Navbar */}
       <nav
-        className={`fixed top-0 left-0 w-full z-50 lg:hidden ${
-          pathname === "/" ? "dark" : ""
-        }`}
+        className={`fixed top-0 left-0 w-full z-50 lg:hidden transition-transform duration-300 ${
+          showNavbar ? "translate-y-0" : "-translate-y-full"
+        } ${pathname === "/" ? "dark" : ""}`}
       >
         <div className="mx-auto px-4 sm:px-6 lg:px-12">
           <div className="relative flex items-center justify-between h-16">
