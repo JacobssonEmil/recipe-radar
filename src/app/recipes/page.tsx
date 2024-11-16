@@ -3,7 +3,7 @@ import { RecipeFilters } from "@/components/recipe-filters";
 
 export default function RecipesPage() {
   return (
-    <div className="container mx-auto py-12 px-4">
+    <div className="container mx-auto py-20 lg:py-52 px-4">
       <div className="flex justify-between items-center mb-8">
         <div>
           <h1 className="text-3xl font-bold mb-2">Browse Recipes</h1>
