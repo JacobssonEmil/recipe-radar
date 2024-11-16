@@ -1,16 +1,24 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { Heart, Clock, Utensils } from "lucide-react";
+import { Heart, Clock, Utensils, ChefHat, Flame } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface RecipeCardProps {
   id: number;
@@ -40,52 +48,88 @@ export function RecipeCard({
   onToggleFavorite,
 }: RecipeCardProps) {
   return (
-    <Card key={id} className="overflow-hidden">
-      <div className="relative h-48">
+    <Card className="overflow-hidden flex flex-col h-full transition-all hover:shadow-lg">
+      <div className="relative h-48 overflow-hidden">
         <Image src={image} alt={title} fill className="object-cover" />
+        <Button
+          variant="ghost"
+          size="icon"
+          className="absolute top-2 right-2 bg-white/80 hover:bg-white"
+          onClick={() => onToggleFavorite(id)}
+        >
+          <Heart
+            className={`h-5 w-5 transition-colors ${
+              isFavorite ? "fill-red-500 text-red-500" : "text-gray-500"
+            }`}
+          />
+        </Button>
       </div>
-      <CardHeader>
-        <div className="flex justify-between items-start">
-          <div>
-            <CardTitle className="text-xl">{title}</CardTitle>
-            <CardDescription>{description}</CardDescription>
-          </div>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => onToggleFavorite(id)}
-          >
-            <Heart
-              className={`h-5 w-5 ${
-                isFavorite ? "fill-current text-red-500" : ""
-              }`}
-            />
-          </Button>
-        </div>
+      <CardHeader className="pb-2">
+        <CardTitle className="text-xl line-clamp-1">{title}</CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className="flex items-center gap-4 text-sm text-muted-foreground">
-          <div className="flex items-center gap-1">
-            <Clock className="h-4 w-4" />
-            <span>{cookTime}</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <Utensils className="h-4 w-4" />
-            <span>{category}</span>
-          </div>
-        </div>
-        <div className="mt-2 flex gap-2">
-          <span className="text-sm bg-primary/10 text-primary px-2 py-1 rounded">
-            {difficulty}
-          </span>
-          <span className="text-sm bg-primary/10 text-primary px-2 py-1 rounded">
-            {calories} kcal
-          </span>
+      <CardContent className="flex-grow pb-2">
+        <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
+          {description}
+        </p>
+        <div className="flex flex-wrap gap-2 mb-4">
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Badge variant="secondary" className="flex items-center gap-1">
+                  <Clock className="h-3 w-3" />
+                  {cookTime}
+                </Badge>
+              </TooltipTrigger>
+              <TooltipContent>Cook Time</TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Badge variant="secondary" className="flex items-center gap-1">
+                  <Utensils className="h-3 w-3" />
+                  {category}
+                </Badge>
+              </TooltipTrigger>
+              <TooltipContent>Category</TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Badge variant="secondary" className="flex items-center gap-1">
+                  <ChefHat className="h-3 w-3" />
+                  {difficulty}
+                </Badge>
+              </TooltipTrigger>
+              <TooltipContent>Difficulty</TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Badge variant="secondary" className="flex items-center gap-1">
+                  <Flame className="h-3 w-3" />
+                  {calories} kcal
+                </Badge>
+              </TooltipTrigger>
+              <TooltipContent>Calories</TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
       </CardContent>
-      <CardFooter className="flex justify-between items-center">
-        <span className="text-sm text-muted-foreground">by {author}</span>
-        <Button variant="outline" asChild>
+      <CardFooter className="flex justify-between items-center pt-2  mt-auto">
+        <div className="flex items-center gap-2">
+          <Avatar className="h-6 w-6">
+            <AvatarImage
+              src={`path/to/author/image/${author}.jpg`}
+              alt={author}
+            />
+            <AvatarFallback>{author.charAt(0)}</AvatarFallback>
+          </Avatar>
+          <span className="text-sm text-muted-foreground">by {author}</span>
+        </div>
+        <Button variant="default" asChild>
           <Link href={`/recipes/${id}`}>View Recipe</Link>
         </Button>
       </CardFooter>

@@ -29,7 +29,7 @@ export default function Home() {
                 Browse Recipes
               </Button>
             </Link>
-            <Link href={"/upload"}>
+            <Link href={"/recipes/upload"}>
               <Button
                 size="lg"
                 className="bg-white text-black hover:bg-gray-100"
@@ -48,7 +48,7 @@ export default function Home() {
                 Browse Recipes
               </Button>
             </Link>
-            <Link href={"/upload"}>
+            <Link href={"/recipes/upload"}>
               <Button
                 size="sm"
                 className="bg-white text-black hover:bg-gray-100"

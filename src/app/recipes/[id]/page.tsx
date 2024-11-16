@@ -17,7 +17,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function RecipeDetails() {
   return (
-    <main className="container mx-auto px-4 py-20 lg:py-52 max-w-7xl">
+    <main className="container mx-auto px-4 py-20 lg:py-40 max-w-7xl">
       {/* Hero Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
         <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
