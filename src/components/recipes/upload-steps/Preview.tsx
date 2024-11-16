@@ -2,11 +2,37 @@
 
 import { useFormContext } from "react-hook-form";
 import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Clock, Users, ChefHat } from "lucide-react";
+interface Ingredient {
+  amount: number | string;
+  unit: string;
+  item: string;
+}
+
+interface Instruction {
+  step: string;
+}
+
+interface Nutrition {
+  calories: number;
+  protein: number;
+  fat: number;
+  carbs: number;
+}
+
+interface FormData {
+  title: string;
+  description: string;
+  cookingTime: number;
+  servings: number;
+  difficulty: string;
+  ingredients: Ingredient[];
+  instructions: Instruction[];
+  nutrition: Nutrition;
+}
 
 export default function Preview() {
-  const { watch } = useFormContext();
+  const { watch } = useFormContext<FormData>();
   const formData = watch();
 
   return (
@@ -34,7 +60,7 @@ export default function Preview() {
           <div>
             <h3 className="text-lg font-semibold mb-3">Ingredients</h3>
             <ul className="space-y-2">
-              {formData.ingredients.map((ing: any, index: number) => (
+              {formData.ingredients.map((ing, index) => (
                 <li key={index} className="flex items-center gap-2">
                   <span className="w-24">
                     {ing.amount} {ing.unit}
@@ -48,7 +74,7 @@ export default function Preview() {
           <div>
             <h3 className="text-lg font-semibold mb-3">Instructions</h3>
             <ol className="space-y-4 list-decimal list-inside">
-              {formData.instructions.map((inst: any, index: number) => (
+              {formData.instructions.map((inst, index) => (
                 <li key={index} className="pl-2">
                   {inst.step}
                 </li>
@@ -57,14 +83,20 @@ export default function Preview() {
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-3">Nutrition Information</h3>
+            <h3 className="text-lg font-semibold mb-3">
+              Nutrition Information
+            </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="p-4 bg-muted rounded-lg text-center">
-                <p className="text-2xl font-bold">{formData.nutrition.calories}</p>
+                <p className="text-2xl font-bold">
+                  {formData.nutrition.calories}
+                </p>
                 <p className="text-sm text-muted-foreground">Calories</p>
               </div>
               <div className="p-4 bg-muted rounded-lg text-center">
-                <p className="text-2xl font-bold">{formData.nutrition.protein}g</p>
+                <p className="text-2xl font-bold">
+                  {formData.nutrition.protein}g
+                </p>
                 <p className="text-sm text-muted-foreground">Protein</p>
               </div>
               <div className="p-4 bg-muted rounded-lg text-center">
@@ -72,7 +104,9 @@ export default function Preview() {
                 <p className="text-sm text-muted-foreground">Fat</p>
               </div>
               <div className="p-4 bg-muted rounded-lg text-center">
-                <p className="text-2xl font-bold">{formData.nutrition.carbs}g</p>
+                <p className="text-2xl font-bold">
+                  {formData.nutrition.carbs}g
+                </p>
                 <p className="text-sm text-muted-foreground">Carbs</p>
               </div>
             </div>
