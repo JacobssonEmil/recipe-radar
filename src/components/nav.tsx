@@ -70,8 +70,8 @@ export default function Navbar() {
     <>
       {/* Desktop Navbar */}
       <nav
-        className={`absolute top-0 left-0 w-full z-50 hidden lg:block ${
-          pathname === "/" ? "dark" : ""
+        className={`absolute top-0 left-0 w-full z-50 hidden lg:block  ${
+          pathname === "/" ? "absolute dark" : "shadow-md shadow-secondary"
         }`}
       >
         <div className="mx-auto px-4 sm:px-6 lg:px-12">
@@ -86,79 +86,55 @@ export default function Navbar() {
             {/* Desktop Navigation Links */}
             <div className="flex items-center justify-center absolute left-1/2 transform -translate-x-1/2">
               <div className="flex items-baseline space-x-8">
-                <Link
-                  href="/"
-                  className={`py-2 text-sm font-medium whitespace-nowrap hover:text-primary ${
-                    isActiveLink("/") ? "text-primary" : "text-muted-foreground"
-                  }`}
-                >
-                  Home
-                </Link>
-                <Link
-                  href="/recipes"
-                  className={`px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap truncate hover:text-primary ${
-                    isActiveLink("/recipes")
-                      ? "text-primary"
-                      : "text-muted-foreground"
-                  }`}
-                >
-                  Recipes
-                </Link>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <a
-                      className={`hover:cursor-pointer px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap truncate hover:text-primary ${
-                        pathname.startsWith("/category/")
-                          ? "text-primary"
-                          : "text-muted-foreground"
-                      }`}
-                    >
-                      Categories
-                    </a>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-screen left-0 mt-2">
-                    <div className="grid grid-cols-4 lg:grid-cols-5 gap-4 p-4">
-                      {categories.map((category) => {
-                        const categoryHref = `/category/${category.toLowerCase()}`;
-                        const isActive = pathname === categoryHref;
-                        return (
-                          <DropdownMenuItem key={category} asChild>
-                            <Link
-                              href={categoryHref}
-                              className={`${
-                                isActive
-                                  ? "text-primary"
-                                  : "text-muted-foreground"
-                              }`}
-                            >
-                              {category}
-                            </Link>
-                          </DropdownMenuItem>
-                        );
-                      })}
-                    </div>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-                <Link
-                  href="/recipes/upload"
-                  className={`px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap truncate hover:text-primary ${
-                    isActiveLink("/recipes/upload")
-                      ? "text-primary"
-                      : "text-muted-foreground"
-                  }`}
-                >
-                  Upload a Recipe
-                </Link>
-                <Link
-                  href="/recipes/my-recipes"
-                  className={`px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap truncate hover:text-primary ${
-                    isActiveLink("/recipes/my-recipes")
-                      ? "text-primary"
-                      : "text-muted-foreground"
-                  }`}
-                >
-                  My Recipes
-                </Link>
+                <Button variant={"link"}>
+                  <Link
+                    href="/"
+                    className={`py-2 text-sm font-medium whitespace-nowrap  ${
+                      isActiveLink("/")
+                        ? "text-primary"
+                        : "text-muted-foreground"
+                    }`}
+                  >
+                    Home
+                  </Link>
+                </Button>
+                <Button variant={"link"}>
+                  <Link
+                    href="/recipes"
+                    className={`py-2 text-sm font-medium whitespace-nowrap  ${
+                      isActiveLink("/recipes")
+                        ? "text-primary"
+                        : "text-muted-foreground"
+                    }`}
+                  >
+                    Recipes
+                  </Link>
+                </Button>
+
+                <Button variant={"link"}>
+                  <Link
+                    href="/recipes/upload"
+                    className={`py-2 text-sm font-medium whitespace-nowrap  ${
+                      isActiveLink("/recipes/upload")
+                        ? "text-primary"
+                        : "text-muted-foreground"
+                    }`}
+                  >
+                    Upload a Recipe
+                  </Link>
+                </Button>
+                <Button variant={"link"}>
+                  <Link
+                    href="/recipes/my-recipes"
+                    className={`py-2 text-sm font-medium whitespace-nowrap  ${
+                      isActiveLink("/recipes/my-recipes")
+                        ? "text-primary"
+                        : "text-muted-foreground"
+                    }`}
+                  >
+                    My Recipes
+                  </Link>
+                </Button>
               </div>
             </div>
 
@@ -232,44 +208,10 @@ export default function Navbar() {
                       Recipes
                     </Link>
 
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <a
-                          className={`hover:cursor-pointer px-3 py-2 rounded-md text-sm font-medium ${
-                            pathname.startsWith("/category/")
-                              ? "text-primary"
-                              : "text-muted-foreground"
-                          }`}
-                        >
-                          Categories
-                        </a>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent className="w-full">
-                        {categories.map((category) => {
-                          const categoryHref = `/category/${category.toLowerCase()}`;
-                          const isActive = pathname === categoryHref;
-                          return (
-                            <DropdownMenuItem key={category} asChild>
-                              <Link
-                                href={categoryHref}
-                                className={`${
-                                  isActive
-                                    ? "text-primary"
-                                    : "text-muted-foreground"
-                                }`}
-                                onClick={() => setIsOpen(false)}
-                              >
-                                {category}
-                              </Link>
-                            </DropdownMenuItem>
-                          );
-                        })}
-                      </DropdownMenuContent>
-                    </DropdownMenu>
                     <Link
-                      href="/upload"
+                      href="/recipes/upload"
                       className={`px-3 py-2 rounded-md text-sm font-medium ${
-                        isActiveLink("/upload")
+                        isActiveLink("/recipes/upload")
                           ? "text-primary"
                           : "text-muted-foreground"
                       }`}
@@ -278,9 +220,9 @@ export default function Navbar() {
                       Upload a Recipe
                     </Link>
                     <Link
-                      href="/my-recipes"
+                      href="/recipes/my-recipes"
                       className={`px-3 py-2 rounded-md text-sm font-medium ${
-                        isActiveLink("/my-recipes")
+                        isActiveLink("/recipes/my-recipes")
                           ? "text-primary"
                           : "text-muted-foreground"
                       }`}
