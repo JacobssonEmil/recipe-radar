@@ -6,35 +6,8 @@ import { LogIn, Menu, UserPlus } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
-const categories = [
-  "Breakfast",
-  "Lunch",
-  "Dinner",
-  "Desserts",
-  "Vegetarian",
-  "Vegan",
-  "Gluten-Free",
-  "Quick & Easy",
-  "Appetizers",
-  "Snacks",
-  "Soups",
-  "Salads",
-  "Main Dishes",
-  "Side Dishes",
-  "Pasta",
-  "Pizza",
-  "Sandwiches",
-  "Burgers",
-  "Wraps",
-];
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -86,10 +59,10 @@ export default function Navbar() {
             {/* Desktop Navigation Links */}
             <div className="flex items-center justify-center absolute left-1/2 transform -translate-x-1/2">
               <div className="flex items-baseline space-x-8">
-                <Button variant={"link"}>
+                <Button variant={"link"} className="text-sm">
                   <Link
                     href="/"
-                    className={`py-2 text-sm font-medium whitespace-nowrap  ${
+                    className={`py-2  font-medium whitespace-nowrap  ${
                       isActiveLink("/")
                         ? "text-primary"
                         : "text-muted-foreground"
@@ -98,41 +71,41 @@ export default function Navbar() {
                     Home
                   </Link>
                 </Button>
-                <Button variant={"link"}>
+                <Button variant={"link"} className="text-sm">
                   <Link
                     href="/recipes"
-                    className={`py-2 text-sm font-medium whitespace-nowrap  ${
+                    className={`py-2 font-medium whitespace-nowrap  ${
                       isActiveLink("/recipes")
                         ? "text-primary"
                         : "text-muted-foreground"
                     }`}
                   >
-                    Recipes
+                    Browse Recipes
                   </Link>
                 </Button>
 
-                <Button variant={"link"}>
-                  <Link
-                    href="/recipes/upload"
-                    className={`py-2 text-sm font-medium whitespace-nowrap  ${
-                      isActiveLink("/recipes/upload")
-                        ? "text-primary"
-                        : "text-muted-foreground"
-                    }`}
-                  >
-                    Upload a Recipe
-                  </Link>
-                </Button>
-                <Button variant={"link"}>
+                <Button variant={"link"} className="text-sm">
                   <Link
                     href="/recipes/my-recipes"
-                    className={`py-2 text-sm font-medium whitespace-nowrap  ${
+                    className={`py-2 font-medium whitespace-nowrap  ${
                       isActiveLink("/recipes/my-recipes")
                         ? "text-primary"
                         : "text-muted-foreground"
                     }`}
                   >
                     My Recipes
+                  </Link>
+                </Button>
+                <Button variant={"link"} className="text-sm">
+                  <Link
+                    href="/recipes/upload"
+                    className={`py-2 font-medium whitespace-nowrap  ${
+                      isActiveLink("/recipes/upload")
+                        ? "text-primary"
+                        : "text-muted-foreground"
+                    }`}
+                  >
+                    Upload a Recipe
                   </Link>
                 </Button>
               </div>
