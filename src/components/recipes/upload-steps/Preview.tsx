@@ -81,36 +81,6 @@ export default function Preview() {
               ))}
             </ol>
           </div>
-
-          <div>
-            <h3 className="text-lg font-semibold mb-3">
-              Nutrition Information
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="p-4 bg-muted rounded-lg text-center">
-                <p className="text-2xl font-bold">
-                  {formData.nutrition.calories}
-                </p>
-                <p className="text-sm text-muted-foreground">Calories</p>
-              </div>
-              <div className="p-4 bg-muted rounded-lg text-center">
-                <p className="text-2xl font-bold">
-                  {formData.nutrition.protein}g
-                </p>
-                <p className="text-sm text-muted-foreground">Protein</p>
-              </div>
-              <div className="p-4 bg-muted rounded-lg text-center">
-                <p className="text-2xl font-bold">{formData.nutrition.fat}g</p>
-                <p className="text-sm text-muted-foreground">Fat</p>
-              </div>
-              <div className="p-4 bg-muted rounded-lg text-center">
-                <p className="text-2xl font-bold">
-                  {formData.nutrition.carbs}g
-                </p>
-                <p className="text-sm text-muted-foreground">Carbs</p>
-              </div>
-            </div>
-          </div>
         </div>
       </Card>
     </div>

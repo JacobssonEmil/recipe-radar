@@ -45,7 +45,6 @@ const steps = [
   { id: "basic", title: "Basic Details" },
   { id: "ingredients", title: "Ingredients" },
   { id: "instructions", title: "Instructions" },
-  { id: "nutrition", title: "Nutrition" },
   { id: "preview", title: "Preview" },
 ];
 
@@ -63,12 +62,6 @@ export default function UploadForm() {
       categories: [],
       ingredients: [{ amount: "", unit: "", item: "" }],
       instructions: [{ step: "" }],
-      nutrition: {
-        calories: "",
-        protein: "",
-        carbs: "",
-        fat: "",
-      },
     },
   });
 
@@ -108,8 +101,7 @@ export default function UploadForm() {
           {currentStep === 0 && <BasicDetails />}
           {currentStep === 1 && <Ingredients />}
           {currentStep === 2 && <Instructions />}
-          {currentStep === 3 && <NutritionInfo />}
-          {currentStep === 4 && <Preview />}
+          {currentStep === 3 && <Preview />}
 
           <div className="flex justify-between">
             <Button

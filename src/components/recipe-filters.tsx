@@ -11,11 +11,21 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Separator } from "@/components/ui/separator";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
 
 export function RecipeFilters() {
   return (
     <div className="space-y-6">
       <div>
+        <div className="flex flex-row gap-2">
+          <Input
+            type="search"
+            className="mb-8"
+            placeholder="Search for Recipes by Ingredients"
+          />
+          <Button>Search</Button>
+        </div>
         <h3 className="text-lg font-semibold mb-4">Filters</h3>
         <Separator className="mb-4" />
 

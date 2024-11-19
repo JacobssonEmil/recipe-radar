@@ -12,7 +12,7 @@ export default function MyRecipes() {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <main className="container mx-auto px-4 py-20 lg:py-40 max-w-8xl">
+    <main className="container mx-auto px-4 py-20 lg:py-40 ">
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
         <div>
@@ -55,6 +55,7 @@ export default function MyRecipes() {
           </TabsTrigger>
         </TabsList>
 
+        <h1>HEHE</h1>
         <TabsContent value="my-recipes">
           <RecipeGrid />
         </TabsContent>

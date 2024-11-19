@@ -23,13 +23,19 @@ export default function Ingredients() {
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-12 gap-4 mb-2">
+        <Label className="col-span-5">Ingredient</Label>
         <Label className="col-span-3">Amount</Label>
-        <Label className="col-span-3">Unit</Label>
-        <Label className="col-span-6">Ingredient</Label>
+        <Label className="col-span-4">Unit</Label>
       </div>
 
       {fields.map((field, index) => (
         <div key={field.id} className="grid grid-cols-12 gap-4 items-start">
+          <div className="col-span-5">
+            <Input
+              placeholder="Ingredient name"
+              {...register(`ingredients.${index}.item`)}
+            />
+          </div>
           <Input
             className="col-span-3"
             placeholder="1"
@@ -47,12 +53,6 @@ export default function Ingredients() {
               <SelectItem value="oz">Ounces</SelectItem>
             </SelectContent>
           </Select>
-          <div className="col-span-5">
-            <Input
-              placeholder="Ingredient name"
-              {...register(`ingredients.${index}.item`)}
-            />
-          </div>
           <Button
             type="button"
             variant="outline"
@@ -68,7 +68,7 @@ export default function Ingredients() {
       <Button
         type="button"
         variant="outline"
-        className="w-full"
+        className="w-full bg-green-600 text-white hover:bg-green-700 hover:text-white"
         onClick={() => append({ amount: "", unit: "", item: "" })}
       >
         <Plus className="h-4 w-4 mr-2" />

@@ -24,7 +24,7 @@ export default function Home() {
             <Link href={"/recipes"}>
               <Button
                 size="lg"
-                className="bg-white text-black hover:bg-gray-100"
+                className="bg-green-600 text-white hover:bg-green-700"
               >
                 Browse Recipes
               </Button>
@@ -42,15 +42,15 @@ export default function Home() {
           <div className="flex sm:hidden gap-4 justify-center">
             <Link href={"/recipes"}>
               <Button
-                size="sm"
-                className="bg-white text-black hover:bg-gray-100"
+                size="lg"
+                className="bg-green-600 text-white hover:bg-green-700"
               >
                 Browse Recipes
               </Button>
             </Link>
             <Link href={"/recipes/upload"}>
               <Button
-                size="sm"
+                size="lg"
                 className="bg-white text-black hover:bg-gray-100"
               >
                 Share Recipe
@@ -157,12 +157,18 @@ export default function Home() {
             <h2 className="text-2xl sm:text-3xl font-bold">Featured Recipes</h2>
             <Link href={"/recipes"}>
               {" "}
-              <Button variant="outline">View All Recipes</Button>
+              <Button
+                variant="default"
+                className=" bg-green-600 hover:bg-green-700 text-white"
+              >
+                View All Recipes
+              </Button>
             </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
+                id: "1",
                 title: "Classic Eggs Benedict",
                 image: "/recipe1.jpg",
                 author: "Chef Maria",
@@ -170,6 +176,7 @@ export default function Home() {
                 difficulty: "Medium",
               },
               {
+                id: "1",
                 title: "Mediterranean Quinoa Bowl",
                 image: "/recipe6.jpg",
                 author: "Chef Alex",
@@ -177,6 +184,7 @@ export default function Home() {
                 difficulty: "Easy",
               },
               {
+                id: "1",
                 title: "Grilled Salmon",
                 image: "/recipe4.jpg",
                 author: "Chef John",
@@ -184,26 +192,28 @@ export default function Home() {
                 difficulty: "Medium",
               },
             ].map((recipe) => (
-              <div key={recipe.title} className="group cursor-pointer">
-                <div className="relative aspect-[4/3] rounded-lg overflow-hidden mb-4">
-                  <Image
-                    src={recipe.image}
-                    alt={recipe.title}
-                    layout="fill"
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
+              <Link href={`/recipes/${recipe.id}`}>
+                <div key={recipe.title} className="group cursor-pointer">
+                  <div className="relative aspect-[4/3] rounded-lg overflow-hidden mb-4">
+                    <Image
+                      src={recipe.image}
+                      alt={recipe.title}
+                      layout="fill"
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                  </div>
+                  <h3 className="font-semibold text-md sm:text-lg mb-2">
+                    {recipe.title}
+                  </h3>
+                  <div className="flex items-center gap-4 text-sm sm:text-base text-muted-foreground">
+                    <span>{recipe.author}</span>
+                    <span>•</span>
+                    <span>{recipe.time}</span>
+                    <span>•</span>
+                    <span>{recipe.difficulty}</span>
+                  </div>
                 </div>
-                <h3 className="font-semibold text-md sm:text-lg mb-2">
-                  {recipe.title}
-                </h3>
-                <div className="flex items-center gap-4 text-sm sm:text-base text-muted-foreground">
-                  <span>{recipe.author}</span>
-                  <span>•</span>
-                  <span>{recipe.time}</span>
-                  <span>•</span>
-                  <span>{recipe.difficulty}</span>
-                </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

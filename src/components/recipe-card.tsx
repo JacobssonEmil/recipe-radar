@@ -129,7 +129,7 @@ export function RecipeCard({
           </Avatar>
           <span className="text-sm text-muted-foreground">by {author}</span>
         </div>
-        <Button variant="default" asChild>
+        <Button variant="secondary" asChild>
           <Link href={`/recipes/${id}`}>View Recipe</Link>
         </Button>
       </CardFooter>

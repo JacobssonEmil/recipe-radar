@@ -26,6 +26,7 @@ export default function Instructions() {
             />
           </div>
           <Button
+            className="mt-8 "
             type="button"
             variant="outline"
             size="icon"
@@ -39,7 +40,7 @@ export default function Instructions() {
       <Button
         type="button"
         variant="outline"
-        className="w-full"
+        className="w-full bg-green-600 text-white hover:bg-green-700 hover:text-white"
         onClick={() => append({ step: "" })}
       >
         <Plus className="h-4 w-4 mr-2" />
