@@ -115,20 +115,24 @@ export default function Navbar() {
             {/* Desktop Sign-in Buttons */}
             <SignedOut>
               <div className="flex items-center gap-2 text-primary ">
-                <Button variant="link" size="sm">
-                  <LogIn
-                    className="mr-2
+                <Link href={"/sign-in"}>
+                  <Button variant="link" size="sm">
+                    <LogIn
+                      className="mr-2
                 
                 
                 "
-                    size={18}
-                  />
-                  Sign in
-                </Button>
-                <Button variant={"link"} size="sm">
-                  <UserPlus className="mr-2" size={18} />
-                  Get Started
-                </Button>
+                      size={18}
+                    />
+                    Sign in
+                  </Button>
+                </Link>
+                <Link href={"/sign-up"}>
+                  <Button variant={"link"} size="sm">
+                    <UserPlus className="mr-2" size={18} />
+                    Get Started
+                  </Button>
+                </Link>
               </div>
             </SignedOut>
             <SignedIn>
