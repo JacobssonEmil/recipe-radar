@@ -9,7 +9,6 @@ import { Form } from "@/components/ui/form";
 import BasicDetails from "./upload-steps/BasicDetails";
 import Ingredients from "./upload-steps/Ingredients";
 import Instructions from "./upload-steps/Instructions";
-import NutritionInfo from "./upload-steps/NutritionInfo";
 import Preview from "./upload-steps/Preview";
 
 const formSchema = z.object({

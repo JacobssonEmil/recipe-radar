@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { SignedOut, SignedIn, UserButton } from "@clerk/nextjs";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -112,22 +113,27 @@ export default function Navbar() {
             </div>
 
             {/* Desktop Sign-in Buttons */}
-            <div className="flex items-center gap-2 text-primary ">
-              <Button variant="link" size="sm">
-                <LogIn
-                  className="mr-2
+            <SignedOut>
+              <div className="flex items-center gap-2 text-primary ">
+                <Button variant="link" size="sm">
+                  <LogIn
+                    className="mr-2
                 
                 
                 "
-                  size={18}
-                />
-                Sign in
-              </Button>
-              <Button variant={"link"} size="sm">
-                <UserPlus className="mr-2" size={18} />
-                Get Started
-              </Button>
-            </div>
+                    size={18}
+                  />
+                  Sign in
+                </Button>
+                <Button variant={"link"} size="sm">
+                  <UserPlus className="mr-2" size={18} />
+                  Get Started
+                </Button>
+              </div>
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
           </div>
         </div>
       </nav>

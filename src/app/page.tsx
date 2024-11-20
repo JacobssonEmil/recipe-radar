@@ -192,8 +192,8 @@ export default function Home() {
                 difficulty: "Medium",
               },
             ].map((recipe) => (
-              <Link href={`/recipes/${recipe.id}`}>
-                <div key={recipe.title} className="group cursor-pointer">
+              <Link key={recipe.id} href={`/recipes/${recipe.id}`}>
+                <div className="group cursor-pointer">
                   <div className="relative aspect-[4/3] rounded-lg overflow-hidden mb-4">
                     <Image
                       src={recipe.image}
