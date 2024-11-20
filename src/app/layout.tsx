@@ -6,6 +6,13 @@ import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import Script from "next/script";
 import { Toaster } from "@/components/ui/toaster";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,31 +36,33 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        {/* //! MIGHT CAUSE ISSUES WITH SWIPER */}
-        <Script
-          src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"
-          strategy="lazyOnload"
-        />
-      </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
+    <ClerkProvider>
+      <html lang="en">
+        <head>
+          {/* //! MIGHT CAUSE ISSUES WITH SWIPER */}
+          <Script
+            src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"
+            strategy="lazyOnload"
+          />
+        </head>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
         >
-          <Nav />
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Nav />
 
-          {/* Main content area with flex-grow to push footer down */}
-          <main className="flex-grow">{children}</main>
-          <Toaster />
-          <Footer />
-        </ThemeProvider>
-      </body>
-    </html>
+            {/* Main content area with flex-grow to push footer down */}
+            <main className="flex-grow">{children}</main>
+            <Toaster />
+            <Footer />
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
