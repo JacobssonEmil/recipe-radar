@@ -6,13 +6,7 @@ import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import Script from "next/script";
 import { Toaster } from "@/components/ui/toaster";
-import {
-  ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
