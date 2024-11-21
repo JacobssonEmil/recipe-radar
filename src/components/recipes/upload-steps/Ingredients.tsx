@@ -14,11 +14,14 @@ import {
 import { Plus, Minus } from "lucide-react";
 
 export default function Ingredients() {
-  const { control, register } = useFormContext();
+  const { control, register, setValue, watch } = useFormContext();
   const { fields, append, remove } = useFieldArray({
     control,
     name: "ingredients",
   });
+
+  // Watch all units for dynamic updates
+  const ingredients = watch("ingredients");
 
   return (
     <div className="space-y-4">
@@ -41,18 +44,25 @@ export default function Ingredients() {
             placeholder="1"
             {...register(`ingredients.${index}.amount`)}
           />
-          <Select>
-            <SelectTrigger className="col-span-3">
-              <SelectValue placeholder="Unit" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="cup">Cup</SelectItem>
-              <SelectItem value="tbsp">Tablespoon</SelectItem>
-              <SelectItem value="tsp">Teaspoon</SelectItem>
-              <SelectItem value="g">Grams</SelectItem>
-              <SelectItem value="oz">Ounces</SelectItem>
-            </SelectContent>
-          </Select>
+          <div className="col-span-3">
+            <Select
+              onValueChange={(value) =>
+                setValue(`ingredients.${index}.unit`, value)
+              }
+              value={ingredients?.[index]?.unit || ""}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Unit" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="cup">Cup</SelectItem>
+                <SelectItem value="tbsp">Tablespoon</SelectItem>
+                <SelectItem value="tsp">Teaspoon</SelectItem>
+                <SelectItem value="g">Grams</SelectItem>
+                <SelectItem value="oz">Ounces</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
           <Button
             type="button"
             variant="outline"

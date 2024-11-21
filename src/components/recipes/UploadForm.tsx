@@ -66,6 +66,7 @@ export default function UploadForm() {
 
   function onSubmit(data: z.infer<typeof formSchema>) {
     console.log(data);
+    // TODO: 1. Send to recipes table | 2. Get the recipe ID from the recently added recipe and send to categories table
   }
 
   return (
