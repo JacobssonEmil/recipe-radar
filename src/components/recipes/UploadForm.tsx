@@ -10,6 +10,7 @@ import BasicDetails from "./upload-steps/BasicDetails";
 import Ingredients from "./upload-steps/Ingredients";
 import Instructions from "./upload-steps/Instructions";
 import Preview from "./upload-steps/Preview";
+import postRecipe from "@/lib/recipesAPI";
 
 const formSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -64,9 +65,29 @@ export default function UploadForm() {
     },
   });
 
-  function onSubmit(data: z.infer<typeof formSchema>) {
-    console.log(data);
-    // TODO: 1. Send to recipes table | 2. Get the recipe ID from the recently added recipe and send to categories table
+  async function onSubmit(data: z.infer<typeof formSchema>) {
+    try {
+      // Step 1: Add recipe to the `recipes` table
+      const recipe = {
+        title: data.title,
+        description: data.description || null,
+        cooking_time: data.cookingTime ? parseInt(data.cookingTime) : null,
+        servings: data.servings ? parseInt(data.servings) : null,
+        difficulty: data.difficulty || null,
+        calories: 499,
+        image: "", // Placeholder for now, add image logic later
+        user_id: "2252e38d-a574-4e00-9bf0-737cc852fbfa", // Replace with dynamic user ID in future
+      };
+
+      const response = await postRecipe(recipe);
+
+      console.log("Recipe added successfully:", response);
+
+      alert("Recipe published successfully!");
+    } catch (error) {
+      console.error("Error adding recipe:", error);
+      alert(`Failed to add recipe: ${error}`);
+    }
   }
 
   return (
