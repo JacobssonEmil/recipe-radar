@@ -1,5 +1,6 @@
 export default async function postRecipe(recipe) {
-  const url = "http://localhost:3000/api/recipes";
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
+  const url = `${apiBaseUrl}/api/recipes`;
 
   try {
     const response = await fetch(url, {
