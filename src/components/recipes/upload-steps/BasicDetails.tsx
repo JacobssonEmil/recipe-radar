@@ -1,5 +1,3 @@
-"use client";
-
 import { useFormContext } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -11,10 +9,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { MultiSelect } from "@/components/ui/multi-select";
 import ImageUpload from "../ImageUpload";
 
+const frameworksList = [
+  { value: "react", label: "React" },
+  { value: "angular", label: "Angular" },
+  { value: "vue", label: "Vue" },
+  { value: "svelte", label: "Svelte" },
+  { value: "ember", label: "Ember" },
+];
+
 export default function BasicDetails() {
-  const { register } = useFormContext();
+  const { register, setValue, watch } = useFormContext();
+  const difficulty = watch("difficulty");
 
   return (
     <div className="space-y-6">
@@ -36,6 +44,17 @@ export default function BasicDetails() {
             id="description"
             placeholder="Describe your recipe"
             {...register("description")}
+          />
+        </div>
+        <div className="space-y-2 ">
+          <Label htmlFor="categories">Categories</Label>
+          <MultiSelect
+            options={frameworksList}
+            onValueChange={(values) => setValue("categories", values)}
+            value={watch("categories")}
+            placeholder="Select categories"
+            variant="inverted"
+            maxCount={3}
           />
         </div>
 
@@ -62,7 +81,10 @@ export default function BasicDetails() {
 
           <div className="space-y-2">
             <Label htmlFor="difficulty">Difficulty</Label>
-            <Select>
+            <Select
+              onValueChange={(value) => setValue("difficulty", value)}
+              value={difficulty}
+            >
               <SelectTrigger>
                 <SelectValue placeholder="Select difficulty" />
               </SelectTrigger>
