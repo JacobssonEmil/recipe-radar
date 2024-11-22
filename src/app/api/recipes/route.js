@@ -1,13 +1,6 @@
 import { supabase } from "../../../lib/supabaseClient";
 import { currentUser } from "@clerk/nextjs/server";
 
-// CORS headers helper
-function setCorsHeaders(res) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-}
-
 export async function OPTIONS() {
   const headers = new Headers();
   headers.set("Access-Control-Allow-Origin", "*");
@@ -38,10 +31,14 @@ export async function GET() {
 
     return new Response(JSON.stringify(data), { status: 200, headers });
   } catch (err) {
-    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
-      status: 500,
-      headers,
-    });
+    console.error("Error handling GET request:", err);
+    return new Response(
+      JSON.stringify({ error: `Internal Server Error: ${err.message}` }),
+      {
+        status: 500,
+        headers,
+      }
+    );
   }
 }
 
@@ -80,9 +77,12 @@ export async function POST(request) {
     return new Response(JSON.stringify(data), { status: 201, headers });
   } catch (err) {
     console.error("Error handling POST request:", err);
-    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
-      status: 500,
-      headers,
-    });
+    return new Response(
+      JSON.stringify({ error: `Internal Server Error: ${err.message}` }),
+      {
+        status: 500,
+        headers,
+      }
+    );
   }
 }
