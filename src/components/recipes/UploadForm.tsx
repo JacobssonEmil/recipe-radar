@@ -76,7 +76,6 @@ export default function UploadForm() {
         difficulty: data.difficulty || null,
         calories: 499,
         image: "", // Placeholder for now, add image logic later
-        user_id: "2252e38d-a574-4e00-9bf0-737cc852fbfa", // Replace with dynamic user ID in future
       };
 
       const response = await postRecipe(recipe);
