@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/select";
 import { MultiSelect } from "@/components/ui/multi-select";
 import ImageUpload from "../ImageUpload";
-import { useState } from "react";
 
 const frameworksList = [
   { value: "react", label: "React" },
