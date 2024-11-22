@@ -3,16 +3,24 @@ import { currentUser } from "@clerk/nextjs/server";
 
 export async function OPTIONS() {
   const headers = new Headers();
-  headers.set("Access-Control-Allow-Origin", "*");
-  headers.set("Access-Control-Allow-Methods", "GET, POST, PUT");
+  headers.set(
+    "Access-Control-Allow-Origin",
+    "https://recipe-radar-pi.vercel.app"
+  );
+  headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS");
   headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  headers.set("Access-Control-Allow-Credentials", "true");
 
   return new Response(null, { headers, status: 204 });
 }
 
 export async function GET() {
   const headers = new Headers();
-  headers.set("Access-Control-Allow-Origin", "*");
+  headers.set(
+    "Access-Control-Allow-Origin",
+    "https://your-frontend-domain.com"
+  );
+  headers.set("Access-Control-Allow-Credentials", "true");
 
   try {
     const { data, error } = await supabase.from("recipes").select(`
@@ -44,7 +52,11 @@ export async function GET() {
 
 export async function POST(request) {
   const headers = new Headers();
-  headers.set("Access-Control-Allow-Origin", "*");
+  headers.set(
+    "Access-Control-Allow-Origin",
+    "https://your-frontend-domain.com"
+  );
+  headers.set("Access-Control-Allow-Credentials", "true");
 
   try {
     const user = await currentUser();
