@@ -66,11 +66,14 @@ export default function UploadForm() {
   });
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
+    console.log(data);
     try {
       // Step 1: Add recipe to the `recipes` table
       const recipe = {
         title: data.title,
         description: data.description || null,
+        ingredients: data.ingredients,
+        instructions: data.instructions,
         cooking_time: data.cookingTime ? parseInt(data.cookingTime) : null,
         servings: data.servings ? parseInt(data.servings) : null,
         difficulty: data.difficulty || null,
@@ -80,7 +83,9 @@ export default function UploadForm() {
 
       const response = await postRecipe(recipe);
 
-      console.log("Recipe added successfully:", response);
+      const recipeId = response.id;
+
+      console.log("Recipe added successfully:", recipeId);
 
       alert("Recipe published successfully!");
     } catch (error) {
